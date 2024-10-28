@@ -239,29 +239,45 @@ body {
   }
 
 }
-@media (max-width: 475px) {
-  .responsive-text {
-      line-height: 12px !important;
-      font-size: 10px !important;
+@media (max-width: 425px) {
+  .responsive-width {
+    width: 367px !important;
   }
+  .responsive-text-center {
+    text-align: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .responsive-width {
+    width: 350px !important;
+  }
+  .responsive-text-center {
+    text-align: center;
+  }
+}
+
+@media (max-width: 320px) {
+  .responsive-width {
+    width: 290px !important;
+  }
+  .secondCard-responsive{
+    width: 292px !important;
+  }
+  .responsive-text-center {
+    text-align: center;
+  }
+}
 @media (max-width: 768px) {
-  /* .responsive-text {
-      line-height: 13px !important;
-     
-  } */
+  .hide-tone-column .ant-table-cell:nth-child(3),
+  .hide-tone-column .ant-table-thead > tr > th:nth-child(3) {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .hide-tone-column .ant-table-cell:nth-child(3),
+    .hide-tone-column .ant-table-thead > tr > th:nth-child(3) {
+      display: none;
+    }
+  }
 }
-
-
 }
-  /* body { */
-    /* padding-top: 50px;  */
-  /* } */
-}
-  
- 
-
-
-
-
-
- 

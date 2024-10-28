@@ -241,8 +241,11 @@ export default function Page() {
               <Select
                 className="w-full mt-2 text-xs lg:text-sm"
                 placeholder="Select Contact"
-                dropdownStyle={{ color: "#7D8FB3" }}
-                size="small"
+                style={{ fontWeight: 700 }}
+                 dropdownStyle={{ color: '#7D8FB3', fontSize: '10px'  }}
+                 size="small"
+                // dropdownStyle={{ color: "#7D8FB3" }}
+                // size="small"
               >
                 <Option value="Contact 1">Contact 1</Option>
                 <Option value="Contact 2">Contact 2</Option>
@@ -254,8 +257,10 @@ export default function Page() {
               <Select
                 className="w-full mt-2"
                 placeholder="Insert Data Variable"
-                size="small"
-                dropdownStyle={{ color: "#7D8FB3" }}
+                style={{ fontWeight: 700 }}
+                 dropdownStyle={{ color: '#7D8FB3', fontSize: '10px'  }}
+                 size="small"
+              
               >
                 <Option value="contact1">Variable 1</Option>
                 <Option value="contact2">Variable 2</Option>
@@ -263,6 +268,9 @@ export default function Page() {
               <Input.TextArea
                 rows={4}
                 placeholder="i.e. I would like to generate a follow-up regarding our last week discussion..."
+                style={{ fontWeight: 700 }}
+                 dropdownStyle={{ color: '#7D8FB3', fontSize: '10px'  }}
+                 size="small"
                 value={inputPrompt}
                 onChange={(e) => setInputPrompt(e.target.value)}
                 className="mt-2"
@@ -274,8 +282,9 @@ export default function Page() {
               <Select
                 className="w-full mt-2"
                 placeholder="Example: 😊 Friendly"
-                size="large"
-                dropdownStyle={{ color: "#7D8FB3" }}
+                style={{ fontWeight: 700 }}
+                 dropdownStyle={{ color: '#7D8FB3', fontSize: '10px'  }}
+                 size="small"
               >
                 <Option value="Friendly">Friendly</Option>
                 <Option value="Formal">Formal</Option>
@@ -319,7 +328,7 @@ export default function Page() {
               </div>
             </Card>
           ) : (
-            <div className="flex flex-col gap-4 w-full lg:w-[600px]">
+            <div className="flex flex-col gap-4 w-full lg:w-[650px]">
               <PrewrittenEmail />
               <AIGeneratedEmail />
             </div>

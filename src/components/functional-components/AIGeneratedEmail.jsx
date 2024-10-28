@@ -235,11 +235,10 @@ export const AIGeneratedEmail = ({ generatedEmail }) => {
                 [Your Name]
             </p>
 
-            <button className="responsive-button bg-[#1565C0] text-[#F5F5F5] w-[148px] h-[37px] mt-5 mx-auto block rounded-[5px] mt-[-1px]" onClick={handleOpenModal}>
+            <button className="responsive-button bg-[#1565C0] text-[#F5F5F5] w-[148px] h-[37px] mt-[11px] mx-auto block rounded-[5px] mt-[-1px]" onClick={handleOpenModal}>
                 Save Email Template
             </button>
            
-            {/* <SaveTemplateModal isModalOpen={isModalOpen} handleClose={handleCloseModal} /> */}
             <SaveTemplateModal
                 isModalOpen={isModalOpen}
                 handleClose={handleCloseModal}
