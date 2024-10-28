@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { Modal, Input, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
