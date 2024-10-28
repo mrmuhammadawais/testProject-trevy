@@ -447,7 +447,7 @@ const SidebarContent = ({ isSidebarVisible, toggleSidebar }) => {
   ];
 
   return (
-    <div className="w-[247px] flex flex-col justify-between p-[30px] pl-[7px]">
+    <div className="w-[247px] flex flex-col justify-between p-[30px] pl-[7px] bg-[#F9F9F9]">
       {isSidebarVisible && (
         <div className="flex items-center justify-end mb-4 md:hidden" onClick={toggleSidebar}>
           <ArrowLeftOutlined className="text-lg cursor-pointer" style={{color:'#7D8FB3'}} />

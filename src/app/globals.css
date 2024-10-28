@@ -186,10 +186,16 @@ body {
   }
 
   .custom-sidebar-menu .ant-menu-item:hover .ant-menu-item-icon,
+  .ant-menu 
   .custom-sidebar-menu .ant-menu-submenu-title:hover .ant-menu-item-icon {
-    color: #FFFFFF !important;
+    color: #F9F9F9 !important;
   }
-
+  .custom-sidebar-menu .ant-menu-item, 
+  .ant-menu,
+  .custom-sidebar-menu .ant-menu-submenu,.ant-menu-sub ant-menu-inline {
+    background-color:#F9F9F9 !important; 
+  }
+  
   .custom-sidebar-menu .ant-menu-item {
     margin-bottom: 10px; 
   }
