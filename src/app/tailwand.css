@@ -1,0 +1,11 @@
+/* In your global CSS file (e.g., styles/globals.css) */
+.custom-sidebar-menu .ant-menu-item:hover {
+    background-color: #1565C0 !important; /* Changes background on hover */
+    border-radius: 10px !important; /* Adds border radius on hover */
+  }
+  
+  .custom-sidebar-menu .ant-menu-submenu-title:hover {
+    background-color: #1565C0 !important;
+    border-radius: 10px !important;
+  }
+  
