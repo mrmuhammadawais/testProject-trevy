@@ -39,7 +39,7 @@ export default function Page() {
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>Choose Contacts</Breadcrumb.Item>
             <Breadcrumb.Item>
-              <span className="w-full text-[#555ACC]">Build Prompt</span>
+              <span className="w-full text-[#555ACC]">Build Prompt@</span>
             </Breadcrumb.Item>
           </Breadcrumb>
         </div>
@@ -115,13 +115,13 @@ export default function Page() {
               <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base">
                 4. Length (optional)
               </h3>
-              <Slider
+              <Slider style={{ color: "#555ACC" }}
                 defaultValue={30}
                 value={length}
                 onChange={(value) => setLength(value)}
                 min={10}
                 max={100}
-                style={{ color: "#555ACC" }}
+              
               />
             </div>
             <button

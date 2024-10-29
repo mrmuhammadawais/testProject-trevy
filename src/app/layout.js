@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from '../redux/providers';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 
 
 
@@ -20,9 +21,12 @@ export default function RootLayout({ children }) {
       </head>
       <body
       >
+        <AntdRegistry>
         <Providers>
+
           {children}
         </Providers>
+        </AntdRegistry>
       </body>
     </html>
   );
