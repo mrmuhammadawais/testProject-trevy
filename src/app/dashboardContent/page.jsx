@@ -39,7 +39,7 @@ export default function Page() {
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>Choose Contacts</Breadcrumb.Item>
             <Breadcrumb.Item>
-              <span className="w-full text-[#555ACC]">Build Prompt@</span>
+              <span className="w-full text-[#555ACC]">Build Prompt</span>
             </Breadcrumb.Item>
           </Breadcrumb>
         </div>

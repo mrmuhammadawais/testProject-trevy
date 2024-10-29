@@ -8,7 +8,7 @@ export const PrewrittenEmail = () => (
     >
       <p className="font-bold mb-0">AI Generated Prompt</p>
       <button className="bg-[#1565C0] text-[#F5F5F5] w-[95px] h-[33px] rounded-[5px]">
-        Build Email
+        Build Email @
       </button>
     </div>
 
