@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import { Modal, Input, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
@@ -8,7 +8,6 @@ const SaveTemplateModal = ({
   handleClose,
   handleSave,
   title = "Save Prompt Template",
-
   saveButtonText = "Save Changes",
   cancelButtonText = "No Thanks",
 }) => {
@@ -23,45 +22,49 @@ const SaveTemplateModal = ({
 
   return (
     <Modal
+      width="415px"
       title={null}
       open={isModalOpen}
       onCancel={handleClose}
       footer={null}
       centered
-      closeIcon={
-        <CloseOutlined style={{ color: "#363DD8", fontSize: "18px" }} />
-      }
-      bodyStyle={{ padding: 0, borderRadius: "15px", overflow: "hidden" }}
       className="custom-modal"
     >
-      <div className="bg-white rounded-[15px] shadow-[0px_60px_120px_0px_rgba(38,51,77,0.05)] p-8 max-w-[90vw] sm:max-w-[400px] md:max-w-[445px] mx-auto">
-        <h3 className="text-left font-bold text-[16px] mb-6 text-[#6B7A99]">
-          {title}
-        </h3>
+      <div className="[bg-white rounded-[15px] shadow-[0px_60px_120px_0px_rgba(38,51,77,0.05)] p-8 max-w-[90vw] sm:max-w-[400px] md:max-w-[445px] mx-auto">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-left font-bold text-[16px] text-[#6B7A99]">
+            {title}
+          </h3>
+
+          <div
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 cursor-pointer"
+            onClick={handleClose}
+          >
+            <CloseOutlined style={{ color: "#363DD8", fontSize: "18px" }} />
+          </div>
+        </div>
 
         <div className="space-y-4">
-          <label className="block font-bold text-[10px]-700 text-[#65728C]">
+          <label className="block font-bold text-[10px]-700 text-[#4D5E80]">
             Template Name
           </label>
           <Input
             placeholder="Sales Email"
             value={templateName}
             onChange={(e) => setTemplateName(e.target.value)}
-            className="rounded-lg py-2 px-4 border border-[#EBEBEB] focus:border-[#1565C0] text-[#3C4858]"
-            style={{ fontSize: "14px" }}
+            className="rounded-lg py-2 px-4 border border-[#EBEBEB] focus:border-[#1565C0] text-[#7D8FB3]"
+            style={{ fontSize: "14px", color: "#65728C", fontWeight: "700" }}
           />
 
-          <label className="block font-bold text-[10px]-700 text-[#65728C] mt-4">
+          <label className="block font-bold text-[10px]-700 text-[#4D5E80] mt-4">
             Description
           </label>
           <Input.TextArea
-            placeholder="This is an sales email for the targeted audience to notify 
-            the latest discounts as well as"
-            value={description}
+            placeholder="This is a sales email for the targeted audience to notify the latest discounts as well as"
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
             className="rounded-lg py-2 px-4 border border-[#EBEBEB] focus:border-[#1565C0] text-[#3C4858]"
-            style={{ fontSize: "14px" }}
+            style={{ fontSize: "14px", color: "#7D8FB3", fontWeight: "700" }}
           />
         </div>
 
@@ -72,12 +75,13 @@ const SaveTemplateModal = ({
           >
             {cancelButtonText}
           </Button>
-          <Button
-            className="bg-[#1565C0] text-white w-36 h-10 rounded-[20px] font-semibold text-[14px] border-none"
+
+          <button
+            className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[180px] sm:w-auto text-sm"
             onClick={handleSaveClick}
           >
             {saveButtonText}
-          </Button>
+          </button>
         </div>
       </div>
     </Modal>

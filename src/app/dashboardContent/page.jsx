@@ -33,7 +33,7 @@ export default function Page() {
 
   return (
     <MainLayout>
-      <div className="flex flex-col min-h-screen p-4 lg:p-0">
+      <div className="responsivee-card flex flex-col min-h-screen p-4 lg:p-0">
         <div className="breadcrumb-container mt-2 mb-4">
           <Breadcrumb separator="/" className="text-xs md:text-sm">
             <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -44,7 +44,7 @@ export default function Page() {
           </Breadcrumb>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-4">
+        <div className="flex flex-col lg:flex-row gap-4 custom-max-w-748">
           <Card
             className="w-full lg:w-[322px] p-0 shadow-[0px_2px_5px_0px_#26334D08]"
             style={{ border: "none", borderRadius: "0" }}
@@ -125,7 +125,8 @@ export default function Page() {
               />
             </div>
             <button
-              className="bg-[#1565C0] text-white w-full h-10 rounded-lg"
+              type="button"
+              className="bg-[#1565C0] text-[#F5F5F5] w-full h-[33px] rounded-[20px]"
               onClick={handleGenerateEmail}
             >
               Generate AI Prompt

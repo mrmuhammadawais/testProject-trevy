@@ -1,6 +1,14 @@
 "use client";
-import React from "react";
-import { Table, Checkbox, Input, Space, Button as AntButton } from "antd";
+import React, { useState } from "react";
+import {
+  Table,
+  Checkbox,
+  Input,
+  Space,
+  Button as AntButton,
+  Modal,
+  Form,
+} from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +19,7 @@ import {
   deleteSelectedTemplates,
 } from "../../redux/taskSlice";
 
-const dataSource = [
+const initialData = [
   {
     key: "1",
     name: (
@@ -109,25 +117,74 @@ const dataSource = [
     ),
   },
 ];
+
 const TemplatePage = () => {
   const dispatch = useDispatch();
   const selectedTemplates =
     useSelector((state) => state.prompt.selectedTemplates) || [];
+  const [dataSource, setDataSource] = useState(initialData);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [editTemplate, setEditTemplate] = useState(null);
+  const [form] = Form.useForm();
 
   const handleSelectTemplate = (key) => {
     dispatch(toggleSelectTemplate(key));
   };
 
+  const handleDelete = (key) => {
+    setDataSource((prevData) => prevData.filter((item) => item.key !== key));
+  };
+
   const handleDeleteSelected = () => {
+    setDataSource((prevData) =>
+      prevData.filter((item) => !selectedTemplates.includes(item.key))
+    );
     dispatch(deleteSelectedTemplates());
   };
 
-  const handleDelete = (key) => {
-    console.log("Delete template with key:", key);
+  const handleEdit = (record) => {
+    setEditTemplate(record);
+    form.setFieldsValue({
+      name: record.name.props.children,
+      prompt: record.prompt.props.children,
+      tone: record.tone.props.children,
+    });
+    setIsModalVisible(true);
   };
 
-  const handleEdit = (key) => {
-    console.log("Edit template with key:", key);
+  const handleModalOk = (values) => {
+    const styledValues = {
+      name: (
+        <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
+          {values.name}
+        </span>
+      ),
+      prompt: (
+        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+          {values.prompt}
+        </span>
+      ),
+      tone: (
+        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+          {values.tone}
+        </span>
+      ),
+    };
+
+    setDataSource((prevData) =>
+      prevData.map((item) =>
+        item.key === editTemplate.key ? { ...item, ...styledValues } : item
+      )
+    );
+    setIsModalVisible(false);
+    setEditTemplate(null);
+    form.resetFields();
+  };
+
+  const handleModalCancel = () => {
+    setIsModalVisible(false);
+    setEditTemplate(null);
+    form.resetFields();
   };
 
   const columns = [
@@ -186,7 +243,7 @@ const TemplatePage = () => {
               />
             }
             style={{ border: "none", borderRadius: "0", padding: "0" }}
-            onClick={() => handleEdit(record.key)}
+            onClick={() => handleEdit(record)}
           />
           <AntButton
             icon={<DeleteOutlined style={{ color: "#FF7979" }} />}
@@ -201,6 +258,7 @@ const TemplatePage = () => {
   return (
     <MainLayout>
       <div className="p-0">
+        {" "}
         <div
           className="responsive-width bg-white shadow-md p-4 md:p-6 rounded-md relative mb-4 md:mb-6"
           style={{ minHeight: "200px" }}
@@ -226,7 +284,6 @@ const TemplatePage = () => {
             </div>
           </div>
         </div>
-
         <div className="flex flex-col sm:flex-row justify-between items-center mb-4 space-y-2 sm:space-y-0">
           <Input.Search
             placeholder="Search by template name"
@@ -237,11 +294,10 @@ const TemplatePage = () => {
             }}
           />
 
-          <button className="bg-blue-600 text-white py-2 px-4 rounded-full w-full max-w-[180px] sm:w-auto text-sm">
+          <button className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[180px] sm:w-auto text-sm">
             + Create New Template
           </button>
         </div>
-
         {selectedTemplates.length > 0 && (
           <div
             className="flex items-center justify-between p-2"
@@ -262,7 +318,9 @@ const TemplatePage = () => {
             <div className="flex items-center">
               <AntButton
                 type="text"
-                icon={<DeleteOutlined />}
+                icon={
+                  <DeleteOutlined style={{ marginTop: "-6px !important" }} />
+                }
                 className="mr-2"
                 style={{
                   color: "#ffffff",
@@ -288,7 +346,6 @@ const TemplatePage = () => {
             </div>
           </div>
         )}
-
         <div className="responsive-width bg-white shadow-md rounded-md w-full hide-tone-column">
           <Table
             dataSource={dataSource}
@@ -298,9 +355,50 @@ const TemplatePage = () => {
             scroll={{ x: "100%" }}
           />
         </div>
+        <Modal
+          title="Edit Template"
+          style={{ color: "#4D5E80 !important" }}
+          visible={isModalVisible}
+          onOk={() => form.submit()}
+          onCancel={handleModalCancel}
+        >
+          <Form
+            form={form}
+            initialValues={{
+              name: editTemplate?.name.props.children || "",
+              prompt: editTemplate?.prompt.props.children || "",
+              tone: editTemplate?.tone.props.children || "",
+            }}
+            onFinish={handleModalOk}
+          >
+            <Form.Item
+              name="name"
+              label="Template Title"
+              style={{ color: "#4D5E80" }}
+              rules={[{ required: true, message: "Please input the title!" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="prompt"
+              label="Input Prompt"
+              rules={[{ required: true, message: "Please input the prompt!" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="tone"
+              label="Tone"
+              rules={[{ required: true, message: "Please input the tone!" }]}
+            >
+              <Input />
+            </Form.Item>
+          </Form>
+        </Modal>
       </div>
     </MainLayout>
   );
 };
 
 export default TemplatePage;
+

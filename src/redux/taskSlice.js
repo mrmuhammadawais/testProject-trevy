@@ -47,3 +47,6 @@ export const {
   deleteSelectedTemplates,
 } = promptSlice.actions;
 export default promptSlice.reducer;
+
+
+
