@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState } from "react";
 import {
@@ -125,6 +126,7 @@ const TemplatePage = () => {
   const [dataSource, setDataSource] = useState(initialData);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editTemplate, setEditTemplate] = useState(null);
+  const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [form] = Form.useForm();
 
   const handleSelectTemplate = (key) => {
@@ -149,6 +151,14 @@ const TemplatePage = () => {
       prompt: record.prompt.props.children,
       tone: record.tone.props.children,
     });
+    setIsCreatingNew(false); 
+    setIsModalVisible(true);
+  };
+
+  const handleCreateNewTemplate = () => {
+    setIsCreatingNew(true);
+    setEditTemplate(null);
+    form.resetFields();
     setIsModalVisible(true);
   };
 
@@ -171,11 +181,20 @@ const TemplatePage = () => {
       ),
     };
 
-    setDataSource((prevData) =>
-      prevData.map((item) =>
-        item.key === editTemplate.key ? { ...item, ...styledValues } : item
-      )
-    );
+    if (isCreatingNew) {
+      const newTemplate = {
+        key: `${dataSource.length + 1}`,
+        ...styledValues,
+      };
+      setDataSource((prevData) => [...prevData, newTemplate]);
+    } else {
+      setDataSource((prevData) =>
+        prevData.map((item) =>
+          item.key === editTemplate.key ? { ...item, ...styledValues } : item
+        )
+      );
+    }
+    
     setIsModalVisible(false);
     setEditTemplate(null);
     form.resetFields();
@@ -187,7 +206,7 @@ const TemplatePage = () => {
     form.resetFields();
   };
 
-  const columns = [
+    const columns = [
     {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
@@ -197,7 +216,7 @@ const TemplatePage = () => {
       dataIndex: "name",
       key: "name",
       render: (text, record) => (
-        <Checkbox
+        <Checkbox  
           onChange={() => handleSelectTemplate(record.key)}
           checked={selectedTemplates.includes(record.key)}
         >
@@ -258,7 +277,8 @@ const TemplatePage = () => {
   return (
     <MainLayout>
       <div className="p-0">
-        {" "}
+          
+
         <div
           className="responsive-width bg-white shadow-md p-4 md:p-6 rounded-md relative mb-4 md:mb-6"
           style={{ minHeight: "200px" }}
@@ -293,38 +313,41 @@ const TemplatePage = () => {
               borderRadius: "5px",
             }}
           />
-
-          <button className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[180px] sm:w-auto text-sm">
+          <button
+            className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[180px] sm:w-auto text-sm"
+            onClick={handleCreateNewTemplate}
+          >
             + Create New Template
           </button>
         </div>
+
         {selectedTemplates.length > 0 && (
-          <div
-            className="flex items-center justify-between p-2"
-            style={{
-              backgroundColor: "#1565C0",
-              color: "#ffffff",
-              borderRadius: "5px",
-              width: "100%",
-              height: "40px",
-              marginBottom: "12px",
-              border: "none",
-            }}
-          >
-            <span className="text-sm">
-              {selectedTemplates.length} item
-              {selectedTemplates.length > 1 ? "s" : ""} selected
-            </span>
-            <div className="flex items-center">
-              <AntButton
-                type="text"
-                icon={
-                  <DeleteOutlined style={{ marginTop: "-6px !important" }} />
-                }
-                className="mr-2"
-                style={{
-                  color: "#ffffff",
-                  borderRadius: "5px",
+            <div
+             className="flex items-center justify-between p-2"
+             style={{
+               backgroundColor: "#1565C0",
+               color: "#ffffff",
+               borderRadius: "5px",
+               width: "100%",
+               height: "40px",
+               marginBottom: "12px",
+               border: "none",
+             }}
+           >
+             <span className="text-sm">
+               {selectedTemplates.length} item
+               {selectedTemplates.length > 1 ? "s" : ""} selected
+             </span>
+             <div className="flex items-center">
+               <AntButton
+                 type="text"
+                 icon={
+                   <DeleteOutlined style={{ marginTop: "-6px !important" }} />
+                 }
+                 className="mr-2"
+                 style={{
+                   color: "#ffffff",
+                   borderRadius: "5px",
                   padding: "0 10px",
                 }}
                 onClick={handleDeleteSelected}
@@ -354,9 +377,10 @@ const TemplatePage = () => {
             className="w-full"
             scroll={{ x: "100%" }}
           />
-        </div>
+        </div> 
+        
         <Modal
-          title="Edit Template"
+          title={isCreatingNew ? "Create New Template" : "Edit Template"}
           style={{ color: "#4D5E80 !important" }}
           visible={isModalVisible}
           onOk={() => form.submit()}
@@ -365,9 +389,9 @@ const TemplatePage = () => {
           <Form
             form={form}
             initialValues={{
-              name: editTemplate?.name.props.children || "",
-              prompt: editTemplate?.prompt.props.children || "",
-              tone: editTemplate?.tone.props.children || "",
+              name: editTemplate?.name?.props.children || "",
+              prompt: editTemplate?.prompt?.props.children || "",
+              tone: editTemplate?.tone?.props.children || "",
             }}
             onFinish={handleModalOk}
           >
@@ -401,4 +425,3 @@ const TemplatePage = () => {
 };
 
 export default TemplatePage;
-
