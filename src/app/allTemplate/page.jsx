@@ -369,7 +369,7 @@ const TemplatePage = () => {
             </div>
           </div>
         )}
-        <div className="responsive-width bg-white shadow-md rounded-md w-full hide-tone-column">
+        <div className="responsive-width bg-white shadow-md rounded-md w-full">
           <Table
             dataSource={dataSource}
             columns={columns}

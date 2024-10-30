@@ -200,12 +200,7 @@ body {
     .hide-tone-column .ant-table-thead > tr > th:nth-child(3) {
       display: none;
     }
-    @media (max-width: 768px) {
-      .hide-tone-column .ant-table-cell:nth-child(3),
-      .hide-tone-column .ant-table-thead > tr > th:nth-child(3) {
-        display: none;
-      }
-    }
+
   }
   @media (min-width: 1024px) and (max-width: 1024px) {
     .custom-max-w-748 {
@@ -217,3 +212,6 @@ body {
     display: none !important;
   }
 }
+
+
+
