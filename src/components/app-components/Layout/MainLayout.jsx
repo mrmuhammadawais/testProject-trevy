@@ -29,7 +29,7 @@ const MainLayout = ({ children }) => {
           <img src={Logo.src} alt="Trevy Logo" className="h-[30px] w-auto" />
         </div>
 
-        <div className="flex items-center" style={{ gap: "15px" }}>
+        <div className="avatar-gap flex items-center" style={{ gap: "15px" }}>
           <div className="responsive-avatar flex items-center space-x-2 responsive-avatar-container">
             <Avatar
               size={25}

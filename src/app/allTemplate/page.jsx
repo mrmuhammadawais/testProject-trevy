@@ -418,7 +418,7 @@ const TemplatePage = () => {
             <Input />
           </Form.Item>
           <Form.Item>
-            <AntButton type="primary" htmlType="submit">
+            <AntButton style={{background: '#1565C0',color:'#fff'}}htmlType="submit">
               {isCreatingNew ? "Create" : "Save"}
             </AntButton>
           </Form.Item>
