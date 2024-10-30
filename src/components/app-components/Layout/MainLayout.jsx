@@ -29,7 +29,7 @@ const MainLayout = ({ children }) => {
           <img src={Logo.src} alt="Trevy Logo" className="h-[30px] w-auto" />
         </div>
 
-        <div className="flex items-center" style={{ gap: "10px" }}>
+        <div className="flex items-center" style={{ gap: "15px" }}>
           <div className="responsive-avatar flex items-center space-x-2 responsive-avatar-container">
             <Avatar
               size={25}
@@ -37,10 +37,10 @@ const MainLayout = ({ children }) => {
             />
             <span className=" username text-white">Adrian Nadar</span>
           </div>
-          <div className="w-[25px] h-[25px] bg-white flex items-center justify-center rounded-full">
+          <div className="w-[30px] h-[30px] bg-white flex items-center justify-center rounded-full">
             <BellOutlined style={{ fontSize: "13px", color: "#C3CAD9" }} />
           </div>
-          <div className="w-[25px] h-[25px] bg-white flex items-center justify-center rounded-full">
+          <div className="w-[30px] h-[30px] bg-white flex items-center justify-center rounded-full">
             <CloseOutlined style={{ fontSize: "13px", color: "#C3CAD9" }} />
           </div>
         </div>

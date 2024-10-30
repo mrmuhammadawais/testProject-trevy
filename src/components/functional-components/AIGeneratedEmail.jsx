@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Card } from "antd";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
-import SaveTemplateModal from "@/app/SaveTemplateModel/page";
-
+import Saveprompt from "../functional-components/Saveprompt"
 export const AIGeneratedEmail = ({ generatedEmail }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -78,7 +77,7 @@ export const AIGeneratedEmail = ({ generatedEmail }) => {
         Save Email Template
       </button>
 
-      <SaveTemplateModal
+      <Saveprompt
         isModalOpen={isModalOpen}
         handleClose={handleCloseModal}
         handleSave={handleSaveTemplate}

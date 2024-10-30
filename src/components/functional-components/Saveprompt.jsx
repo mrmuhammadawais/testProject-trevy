@@ -44,7 +44,7 @@ const SaveTemplateModal = ({
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-1">
           <label className="block font-bold text-[10px]-700 text-[#4D5E80]">
             Template Name
           </label>
@@ -53,7 +53,8 @@ const SaveTemplateModal = ({
             value={templateName}
             onChange={(e) => setTemplateName(e.target.value)}
             className="rounded-lg py-2 px-4 border border-[#EBEBEB] focus:border-[#1565C0] text-[#7D8FB3]"
-            style={{ fontSize: "14px", color: "#65728C", fontWeight: "700" }}
+            style={{ fontWeight: 700, width: "100%", marginBottom: "15px",height:'45px',borderRadius:'5px', border: '2px solid #F5F6F7',boxShadow: '0px 2px 5px 0px #26334D08' }}
+
           />
 
           <label className="block font-bold text-[10px]-700 text-[#4D5E80] mt-4">
@@ -64,7 +65,9 @@ const SaveTemplateModal = ({
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
             className="rounded-lg py-2 px-4 border border-[#EBEBEB] focus:border-[#1565C0] text-[#3C4858]"
-            style={{ fontSize: "14px", color: "#7D8FB3", fontWeight: "700" }}
+            style={{ fontWeight: 700, marginBottom: "15px",borderRadius:'5px', border: '2px solid #F5F6F7',boxShadow: '0px 2px 5px 0px #26334D08' }}
+
+         
           />
         </div>
 

@@ -34,7 +34,7 @@ export default function Page() {
   return (
     <MainLayout>
       <div className="responsivee-card flex flex-col min-h-screen p-4 lg:p-0">
-        <div className="breadcrumb-container mt-2 mb-4">
+        <div className="breadcrumb-container mt-2 mb-2">
           <Breadcrumb separator="/" className="text-xs md:text-sm">
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>Choose Contacts</Breadcrumb.Item>
@@ -49,34 +49,35 @@ export default function Page() {
             className="w-full lg:w-[322px] p-0 shadow-[0px_2px_5px_0px_#26334D08]"
             style={{ border: "none", borderRadius: "0" }}
           >
-            <h2 className="font-bold mb-4 text-base lg:text-lg">
+            <h2 className="font-bold mb-2 text-base lg:text-lg">
               Setup your input prompt
             </h2>
 
-            <div className="mb-4 text-[#4D5E80]">
-              <h3 className="font-bold text-sm lg:text-base mb-[15px]">
+            <div className="mb-2 text-[#4D5E80]">
+              <h3 className="font-bold text-sm lg:text-base p-[10px]">
                 1. Select Contact
               </h3>
               <Select
                 className="w-full mt-2 text-xs lg:text-sm"
                 placeholder="Select Contact"
-                style={{ fontWeight: 700 }}
-                dropdownStyle={{ color: "#7D8FB3", fontSize: "15px" }}
+                style={{ fontWeight: 700,height:"45px" ,borderRadius:'5px', border: '2px solid #F5F6F7',boxShadow: '0px 2px 5px 0px #26334D08'
+                }}
+                dropdownStyle={{ color: "#7D8FB3", fontSize: "15px", background:"#fff" }}
                 size="small"
               >
                 <Option value="Contact 1">Contact 1</Option>
                 <Option value="Contact 2">Contact 2</Option>
               </Select>
             </div>
-
-            <div className="mb-4">
-              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base mb-[15px]">
+         
+            <div className="mb-2 ">
+              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base p-[10px] ">
                 2. Your Input Prompt
               </h3>
               <Select
                 className="w-full mt-2"
                 placeholder="Insert Data Variable"
-                style={{ fontWeight: 700, width: "50%", marginBottom: "15px" }}
+                style={{ fontWeight: 700, width: "65%", marginBottom: "15px",height:'45px',borderRadius:'5px', border: '2px solid #F5F6F7',boxShadow: '0px 2px 5px 0px #26334D08' }}
                 dropdownStyle={{ color: "#7D8FB3", fontSize: "10px" }}
                 size="small"
               >
@@ -86,7 +87,7 @@ export default function Page() {
               <Input.TextArea
                 rows={4}
                 placeholder="i.e. I would like to generate a follow-up regarding our last week discussion..."
-                style={{ fontWeight: 700 }}
+                style={{ fontWeight: 700, height:'160px',borderRadius:"15px", border: '2px solid #F5F6F7',boxShadow: '0px 2px 5px 0px #26334D08' }}
                 dropdownStyle={{ color: "#7D8FB3", fontSize: "10px" }}
                 size="small"
                 value={inputPrompt}
@@ -95,14 +96,14 @@ export default function Page() {
               />
             </div>
 
-            <div className="mb-4">
-              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base mb-[15px]">
+            <div className="mb-2 ">
+              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base p-[10px]">
                 3. Choose a Tone (optional)
               </h3>
               <Select
                 className="w-full mt-2"
                 placeholder="Example: 😊 Friendly"
-                style={{ fontWeight: 700 }}
+                style={{ fontWeight: 700,height:'45px',borderRadius:'5px', border: '2px solid #F5F6F7',boxShadow: '0px 2px 5px 0px #26334D08' }}
                 dropdownStyle={{ color: "#7D8FB3", fontSize: "10px" }}
                 size="small"
               >
@@ -111,8 +112,8 @@ export default function Page() {
               </Select>
             </div>
 
-            <div className="mb-4">
-              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base mb-[15px]">
+            <div className="mb-2">
+              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base p-[10px]">
                 4. Length (optional)
               </h3>
               <Slider
