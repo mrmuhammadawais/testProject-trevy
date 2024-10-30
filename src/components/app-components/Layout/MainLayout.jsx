@@ -77,7 +77,7 @@ const SidebarContent = ({ isSidebarVisible, toggleSidebar }) => {
       label: "Templates",
       children: [
         {
-          key: "template1",
+          key: "template1" ,
           label: <Link href="/newTemplate">Create New Template</Link>,
         },
         {

@@ -99,6 +99,11 @@ body {
     font-weight: 700 !important;
     font-size: 15px !important;
   }
+  .custom-sidebar-menu .ant-menu-submenu .ant-menu-item {
+    color: #6B7A99 !important;
+}
+
+
   .text-balance {
     text-wrap: balance;
   }
