@@ -29,19 +29,19 @@ const MainLayout = ({ children }) => {
           <img src={Logo.src} alt="Trevy Logo" className="h-[30px] w-auto" />
         </div>
 
-        <div className="flex items-center space-x-6">
-          <div className="flex items-center space-x-2 hide-425">
+        <div className="flex items-center" style={{ gap: "10px" }}>
+          <div className="responsive-avatar flex items-center space-x-2 responsive-avatar-container">
             <Avatar
               size={25}
               src="https://randomuser.me/api/portraits/women/44.jpg"
             />
-            <span className="text-white">Adrian Nadar</span>
+            <span className=" username text-white">Adrian Nadar</span>
           </div>
           <div className="w-[25px] h-[25px] bg-white flex items-center justify-center rounded-full">
-            <BellOutlined style={{ fontSize: "16px", color: "#C3CAD9" }} />
+            <BellOutlined style={{ fontSize: "13px", color: "#C3CAD9" }} />
           </div>
           <div className="w-[25px] h-[25px] bg-white flex items-center justify-center rounded-full">
-            <CloseOutlined style={{ fontSize: "16px", color: "#C3CAD9" }} />
+            <CloseOutlined style={{ fontSize: "13px", color: "#C3CAD9" }} />
           </div>
         </div>
       </header>
@@ -77,7 +77,7 @@ const SidebarContent = ({ isSidebarVisible, toggleSidebar }) => {
       label: "Templates",
       children: [
         {
-          key: "template1" ,
+          key: "template1",
           label: <Link href="/newTemplate">Create New Template</Link>,
         },
         {

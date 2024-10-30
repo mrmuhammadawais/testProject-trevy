@@ -54,14 +54,14 @@ export default function Page() {
             </h2>
 
             <div className="mb-4 text-[#4D5E80]">
-              <h3 className="font-bold text-sm lg:text-base">
+              <h3 className="font-bold text-sm lg:text-base mb-[15px]">
                 1. Select Contact
               </h3>
               <Select
                 className="w-full mt-2 text-xs lg:text-sm"
                 placeholder="Select Contact"
                 style={{ fontWeight: 700 }}
-                dropdownStyle={{ color: "#7D8FB3", fontSize: "10px" }}
+                dropdownStyle={{ color: "#7D8FB3", fontSize: "15px" }}
                 size="small"
               >
                 <Option value="Contact 1">Contact 1</Option>
@@ -70,13 +70,13 @@ export default function Page() {
             </div>
 
             <div className="mb-4">
-              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base ">
+              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base mb-[15px]">
                 2. Your Input Prompt
               </h3>
               <Select
                 className="w-full mt-2"
                 placeholder="Insert Data Variable"
-                style={{ fontWeight: 700,width:'50%' }}
+                style={{ fontWeight: 700, width: "50%", marginBottom: "15px" }}
                 dropdownStyle={{ color: "#7D8FB3", fontSize: "10px" }}
                 size="small"
               >
@@ -96,7 +96,7 @@ export default function Page() {
             </div>
 
             <div className="mb-4">
-              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base">
+              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base mb-[15px]">
                 3. Choose a Tone (optional)
               </h3>
               <Select
@@ -112,25 +112,26 @@ export default function Page() {
             </div>
 
             <div className="mb-4">
-              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base">
+              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base mb-[15px]">
                 4. Length (optional)
               </h3>
-              <Slider style={{ color: "#555ACC" }}
+              <Slider
+                style={{ color: "#555ACC" }}
                 defaultValue={30}
                 value={length}
                 onChange={(value) => setLength(value)}
                 min={10}
                 max={100}
-              
               />
             </div>
+
             <button
               type="button"
               className="bg-[#1565C0] text-[#F5F5F5] w-full h-[33px] rounded-[20px]"
               onClick={handleGenerateEmail}
             >
               Generate AI Prompt
-              <RightOutlined />
+              <RightOutlined className="ml-8" />
             </button>
           </Card>
 

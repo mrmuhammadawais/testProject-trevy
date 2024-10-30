@@ -100,9 +100,8 @@ body {
     font-size: 15px !important;
   }
   .custom-sidebar-menu .ant-menu-submenu .ant-menu-item {
-    color: #6B7A99 !important;
-}
-
+    color: #6b7a99 !important;
+  }
 
   .text-balance {
     text-wrap: balance;
@@ -161,19 +160,6 @@ body {
   .ant-menu {
     background: #fff !important;
   }
-  @media (max-width: 425px) {
-    .hide-425 {
-      display: none;
-    }
-  }
-  @media (max-width: 425px) {
-    .responsive-width {
-      width: 367px !important;
-    }
-    .responsive-text-center {
-      text-align: center;
-    }
-  }
 
   @media (max-width: 425px) {
     .responsive-width {
@@ -195,12 +181,12 @@ body {
       text-align: center;
     }
   }
+
   @media (max-width: 768px) {
     .hide-tone-column .ant-table-cell:nth-child(3),
     .hide-tone-column .ant-table-thead > tr > th:nth-child(3) {
       display: none;
     }
-
   }
   @media (min-width: 1024px) and (max-width: 1024px) {
     .custom-max-w-748 {
@@ -213,5 +199,34 @@ body {
   }
 }
 
+@media (min-width: 1024px) and (max-width: 1024px) {
+  .custom-max-w-748 {
+    max-width: 748px;
+  }
+}
+@media (max-width: 600px) and (min-width: 425px) {
+  .responsive-width {
+    width: 400px !important;
+  }
+}
 
+@media (min-width: 425x) and (max-width: 425) {
+  .table-class {
+    width: 400px;
+  }
+}
 
+@media (max-width: 375px) {
+  .responsive-avatar-container {
+    margin-left: 20px;
+  }
+
+  .username {
+    font-size: 10px;
+  }
+  @media (max-width: 600px) and (min-width: 425px) {
+    .responsive-width {
+      width: 400px !important;
+    }
+  }
+}

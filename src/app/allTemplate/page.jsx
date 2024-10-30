@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from "react";
 import {
@@ -128,10 +127,8 @@ const TemplatePage = () => {
   const [editTemplate, setEditTemplate] = useState(null);
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [form] = Form.useForm();
-
-  const handleSelectTemplate = (key) => {
-    dispatch(toggleSelectTemplate(key));
-  };
+  
+    
 
   const handleDelete = (key) => {
     setDataSource((prevData) => prevData.filter((item) => item.key !== key));
@@ -276,6 +273,9 @@ const TemplatePage = () => {
 
   return (
     <MainLayout>
+    <div className="firstContainer">
+
+    
       <div className="p-0">
           
 
@@ -369,16 +369,17 @@ const TemplatePage = () => {
             </div>
           </div>
         )}
-        <div className="responsive-width bg-white shadow-md rounded-md w-full">
+        <div className="responsive-width bg-white shadow-md rounded-md lg-[400px]">
           <Table
             dataSource={dataSource}
             columns={columns}
             pagination={false}
-            className="w-full"
+            className="responsive-width"
             scroll={{ x: "100%" }}
           />
         </div> 
-        
+       
+
         <Modal
           title={isCreatingNew ? "Create New Template" : "Edit Template"}
           style={{ color: "#4D5E80 !important" }}
@@ -420,8 +421,12 @@ const TemplatePage = () => {
           </Form>
         </Modal>
       </div>
+      </div>
     </MainLayout>
   );
 };
 
 export default TemplatePage;
+
+
+
