@@ -70,13 +70,13 @@ export default function Page() {
             </div>
 
             <div className="mb-4">
-              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base">
+              <h3 className="font-bold text-[#4D5E80] text-sm lg:text-base ">
                 2. Your Input Prompt
               </h3>
               <Select
                 className="w-full mt-2"
                 placeholder="Insert Data Variable"
-                style={{ fontWeight: 700 }}
+                style={{ fontWeight: 700,width:'50%' }}
                 dropdownStyle={{ color: "#7D8FB3", fontSize: "10px" }}
                 size="small"
               >
