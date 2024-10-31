@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { Modal, Input, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
@@ -69,13 +69,12 @@ const SaveTemplateModal = ({
         </div>
 
         <div className="flex justify-end space-x-4 mt-8">
-          <Button
-            className="bg-white border-[2px] border-[#F5F6F7] text-[#6B7A99] w-36 h-10 rounded-[20px] font-semibold text-[14px]"
+          <button
+            className="bg-[#F5F6F7] border-[2px] border-[#F5F6F7] text-[#6B7A99] w-36 h-10 rounded-full font-semibold text-[14px]"
             onClick={handleClose}
           >
             {cancelButtonText}
-          </Button>
-
+          </button>
           <button
             className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[180px] sm:w-auto text-sm"
             onClick={handleSaveClick}
@@ -89,4 +88,3 @@ const SaveTemplateModal = ({
 };
 
 export default SaveTemplateModal;
-
