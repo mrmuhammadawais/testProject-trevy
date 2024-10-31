@@ -8,9 +8,11 @@ import {
   AppstoreOutlined,
   MenuOutlined,
   ArrowLeftOutlined,
+  UsergroupAddOutlined,
 } from "@ant-design/icons";
 import Logo from "../../../assets/icons/logo.png";
 import Link from "next/link";
+
 
 const MainLayout = ({ children }) => {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -84,6 +86,18 @@ const SidebarContent = ({ isSidebarVisible, toggleSidebar }) => {
           key: "template2",
           label: <Link href="/allTemplate">All Templates</Link>,
         },
+      ],
+    },
+    {
+      key: "audience",
+      icon: <UsergroupAddOutlined />,
+      label: "Audience",
+      children: [
+        {
+          key: "Contact1",
+          label: <Link href="/audience">All Contact</Link>,
+        },
+       
       ],
     },
   ];
