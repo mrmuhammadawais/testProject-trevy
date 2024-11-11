@@ -191,6 +191,7 @@ export default function Segments() {
   ];
   return (
     <MainLayout>
+    <div className="bg-gray-100 min-h-screen flex justify-center overflow-hidden">
       <div className="bg-gray-100 p-6 min-h-screen flex justify-center">
         <Row gutter={16} className="w-full max-w-6xl space-y-4 lg:space-y-0">
           <Col xs={24} lg={16} className="space-y-2">
@@ -418,6 +419,9 @@ export default function Segments() {
           </Col>
         </Row>
       </div>
+      </div>
     </MainLayout>
   );
 }
+
+

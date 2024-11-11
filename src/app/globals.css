@@ -223,7 +223,7 @@ body {
     }
     .card1{
       margin-right: 0px !important;
-      width: 250px !important;
+      width: 245px !important;
     }
   }
 
@@ -255,6 +255,13 @@ body {
   }
 
 }
+@media (min-width: 360px) and (max-width: 400px) {
+  .card1 {
+    width: 295px !important;
+    padding: 2px !important;
+  }
+}
+
 
 @media (max-width: 600px) and (min-width: 425px) {
   .responsive-width {
@@ -282,11 +289,7 @@ body {
   .responsive-avatar-container {
     margin-left: 20px;
   }
-  .card1{
-    width: 245px !important;
-    margin-left: 0px !important;
-  }
- 
+
 
   .username {
     font-size: 10px;
