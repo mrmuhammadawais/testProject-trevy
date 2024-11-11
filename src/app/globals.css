@@ -148,7 +148,15 @@ body {
     background-color: #1565c0;
     flex-shrink: 0;
   }
-
+  .compact-row {
+    height: 32px; /* Adjust row height for compact spacing */
+  }
+  .text{
+    font-size: '12px !important';
+  }
+  .card1 .ant-table-cell {
+    padding: 4px 8px; /* Further reduce cell padding */
+  }
   .content {
     flex-grow: 1;
   }
@@ -160,7 +168,40 @@ body {
   .ant-menu {
     background: #fff !important;
   }
+  /* @media (max-width: 425px) and (min-width: 425px) {
+    .card1 {
+      margin-right: 0px;
+      width: 377px;
+      margin-right: 0px !important;
+     padding: 0px !important;    
+      overflow-x: auto !important;
+    
+    
+      
+    }
 
+  } */
+@media (min-width: 768px) and (max-width: 768px) {
+  .card1 {
+    width: 500px !important;
+    margin-right: -9px !important;
+  }
+}
+
+@media (max-width: 1024px)  {
+  .mab {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+
+
+
+
+ 
+    
+  
   @media (max-width: 425px) {
     .responsive-width {
       width: 350px !important;
@@ -179,6 +220,10 @@ body {
     }
     .responsive-text-center {
       text-align: center;
+    }
+    .card1{
+      margin-right: 0px !important;
+      width: 250px !important;
     }
   }
 
@@ -200,13 +245,30 @@ body {
 }
 
 @media (min-width: 1024px) and (max-width: 1024px) {
-  .custom-max-w-748 {
+  .custom-max-w-748  {
     max-width: 748px;
+    
   }
+  .card1
+    {
+     padding:0px !important;
+  }
+
 }
+
 @media (max-width: 600px) and (min-width: 425px) {
   .responsive-width {
     width: 400px !important;
+  }
+  .card1 {
+    margin-right: 0px;
+    width: 345px;
+    margin-right: 0px !important;
+   padding: 0px !important;    
+    /* overflow-x: auto !important; */
+  
+  
+    
   }
 }
 
@@ -220,6 +282,11 @@ body {
   .responsive-avatar-container {
     margin-left: 20px;
   }
+  .card1{
+    width: 245px !important;
+    margin-left: 0px !important;
+  }
+ 
 
   .username {
     font-size: 10px;
@@ -228,7 +295,17 @@ body {
     .responsive-width {
       width: 400px !important;
     }
+    
   }
-  
-  
 }
+  
+
+
+
+  
+
+
+  
+  
+
+

@@ -28,7 +28,7 @@ const MainLayout = ({ children }) => {
           <div className="md:hidden" onClick={toggleSidebar}>
             <MenuOutlined className="text-white text-lg cursor-pointer" />
           </div>
-          <img src={Logo.src} alt="Trevy Logo" className="h-[30px] w-auto" />
+          <img src={Logo.src}  alt="Trevy Logo" className="h-[30px] w-auto"/>
         </div>
 
         <div className="avatar-gap flex items-center" style={{ gap: "15px" }}>
@@ -96,6 +96,14 @@ const SidebarContent = ({ isSidebarVisible, toggleSidebar }) => {
         {
           key: "Contact1",
           label: <Link href="/audience">All Contact</Link>,
+        },
+        {
+          key: "segment",
+          label: <Link href="/segments">Segments</Link>,
+        },
+        {
+          key: "Tags",
+          label: <Link href="/tags">Tags</Link>,
         },
        
       ],

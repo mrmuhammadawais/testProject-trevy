@@ -8,12 +8,21 @@ import {
   Button as AntButton,
   Modal,
   Form,
+  Select,
 } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  EyeOutlined,
+  FilterOutlined,
+  MailOutlined,
+  SearchOutlined,
+  TagsOutlined,
+} from "@ant-design/icons";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "@/components/app-components/Layout/MainLayout";
-import People from "../../assets/icons/people.png";
+import tagsImg from "../../assets/icons/tagsImg.png";
 import TemplateHeader from "@/components/functional-components/TemplateHeader";
 import {
   toggleSelectTemplate,
@@ -25,118 +34,177 @@ const initialData = [
     key: "1",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-        Zachary Gomez
+       11-2-2024
       </span>
     ),
-
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        i.e. I would like to generate a follow up regarding our last week
-        discussion of a property visit...
+       10
       </span>
     ),
     tone: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        Appreciation 😄
+      <span
+        style={{
+          color: "#7D8FB3",
+          fontSize: "12px",
+          fontWeight: 700,
+          background: "#ECF0F1",
+          border: "2px solid #ECF0F1",
+          borderRadius: "15px",
+          borderWidth: "thick",
+        }}
+      >
+        BADGE
       </span>
     ),
+    toneValue: "BADGE",
   },
   {
     key: "2",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-        Amanda Montgomery
+        11-2-2024
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        i.e. I would like to generate a follow up regarding our last week
-        discussion of a property visit...
+       10
       </span>
     ),
     tone: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        Formal 😄
+      <span
+        style={{
+          color: "#7D8FB3",
+          fontSize: "12px",
+          fontWeight: 700,
+          background: "#ECF0F1",
+          border: "2px solid #ECF0F1",
+          borderRadius: "15px",
+          borderWidth: "thick",
+        }}
+      >
+        BADGE
       </span>
     ),
+    toneValue: "BADGE",
   },
   {
     key: "3",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-        Lester Holland
+      11-2-2024
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        i.e. I would like to generate a follow up regarding our last week
-        discussion of a property visit...
+       10
       </span>
     ),
     tone: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        Cool 😄
+      <span
+        style={{
+          color: "#7D8FB3",
+          fontSize: "12px",
+          fontWeight: 700,
+          background: "#ECF0F1",
+          border: "2px solid #ECF0F1",
+          borderRadius: "15px",
+          borderWidth: "thick",
+        }}
+      >
+        BADGE
       </span>
     ),
+    toneValue: "BADGE",
   },
   {
     key: "4",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-        Max Allison
+       11-2-2024
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        i.e. I would like to generate a follow up regarding our last week
-        discussion of a property visit...
+      10
       </span>
     ),
     tone: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        Cool 😄
+      <span
+        style={{
+          color: "#7D8FB3",
+          fontSize: "12px",
+          fontWeight: 700,
+          background: "#ECF0F1",
+          border: "2px solid #ECF0F1",
+          borderRadius: "15px",
+          borderWidth: "thick",
+        }}
+      >
+        BADGE
       </span>
     ),
+    toneValue: "BADGE",
   },
   {
     key: "5",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-        Richard Gregory
+        11-2-2024
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        i.e. I would like to generate a follow up regarding our last week
-        discussion of a property visit...
+        10
       </span>
     ),
     tone: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        Help 😄
-      </span>
-    ),
-  },
+        <span
+          style={{
+            color: "#7D8FB3",
+            fontSize: "12px",
+            fontWeight: 700,
+            background: "#ECF0F1",
+            border: "2px solid #ECF0F1",
+            borderRadius: "15px",
+            borderWidth: "thick",
+          }}
+        >
+          BADGE
+        </span>
+      ),
+    }
 ];
-const TemplatePage = () => {
+
+const AudiencePage = () => {
   const dispatch = useDispatch();
   const selectedTemplates =
     useSelector((state) => state.prompt.selectedTemplates) || [];
   const [dataSource, setDataSource] = useState(initialData);
+  const [filteredData, setFilteredData] = useState(initialData);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editTemplate, setEditTemplate] = useState(null);
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [form] = Form.useForm();
+  const [selectedTag, setSelectedTag] = useState(null);
 
+  const handleReset = () => {
+    setSelectedTag(null);
+    setFilteredData(dataSource);
+  };
   const handleSelectTemplate = (key) => {
     dispatch(toggleSelectTemplate(key));
   };
 
   const handleDelete = (key) => {
+    setFilteredData((prevData) => prevData.filter((item) => item.key !== key));
     setDataSource((prevData) => prevData.filter((item) => item.key !== key));
   };
 
   const handleDeleteSelected = () => {
+    setFilteredData((prevData) =>
+      prevData.filter((item) => !selectedTemplates.includes(item.key))
+    );
     setDataSource((prevData) =>
       prevData.filter((item) => !selectedTemplates.includes(item.key))
     );
@@ -164,7 +232,7 @@ const TemplatePage = () => {
   const handleModalOk = (values) => {
     const styledValues = {
       name: (
-        <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
+        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
           {values.name}
         </span>
       ),
@@ -174,7 +242,17 @@ const TemplatePage = () => {
         </span>
       ),
       tone: (
-        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+        <span
+          style={{
+            color: "#7D8FB3",
+            fontSize: "12px",
+            fontWeight: 700,
+            background: "#ECF0F1",
+            border: "2px solid #ECF0F1",
+            borderRadius: "15px",
+            borderWidth: "thick",
+          }}
+        >
           {values.tone}
         </span>
       ),
@@ -186,8 +264,14 @@ const TemplatePage = () => {
         ...styledValues,
       };
       setDataSource((prevData) => [...prevData, newTemplate]);
+      setFilteredData((prevData) => [...prevData, newTemplate]);
     } else {
       setDataSource((prevData) =>
+        prevData.map((item) =>
+          item.key === editTemplate.key ? { ...item, ...styledValues } : item
+        )
+      );
+      setFilteredData((prevData) =>
         prevData.map((item) =>
           item.key === editTemplate.key ? { ...item, ...styledValues } : item
         )
@@ -204,43 +288,56 @@ const TemplatePage = () => {
     setEditTemplate(null);
     form.resetFields();
   };
+  const handleTagFilterChange = (value) => {
+    setSelectedTag(value);
+    if (value) {
+      setFilteredData(dataSource.filter((item) => item.toneValue === value));
+    } else {
+      setFilteredData(dataSource);
+    }
+  };
 
   const columns = [
     {
+        title: (
+          <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+            Tags
+          </span>
+        ),
+        dataIndex: "tone",
+        key: "tone",
+        width:400,
+        render: (text, record) => (
+            <Checkbox
+              onChange={() => handleSelectTemplate(record.key)}
+              checked={selectedTemplates.includes(record.key)}
+            >
+              {text}
+            </Checkbox>
+          ),
+      },
+    {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-          Template Title
+        Created Date
         </span>
       ),
       dataIndex: "name",
       key: "name",
-      render: (text, record) => (
-        <Checkbox
-          onChange={() => handleSelectTemplate(record.key)}
-          checked={selectedTemplates.includes(record.key)}
-        >
-          {text}
-        </Checkbox>
-      ),
+      width:500,
+    
     },
     {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-          Input Prompt
+           Contacts Assigned
         </span>
       ),
       dataIndex: "prompt",
       key: "prompt",
+      width:500,
     },
-    {
-      title: (
-        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-          Tone
-        </span>
-      ),
-      dataIndex: "tone",
-      key: "tone",
-    },
+ 
     {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
@@ -248,6 +345,7 @@ const TemplatePage = () => {
         </span>
       ),
       key: "actions",
+      
       render: (text, record) => (
         <Space>
           <AntButton
@@ -258,6 +356,7 @@ const TemplatePage = () => {
                   width: "18.75px",
                   height: "18.75px",
                 }}
+               
               />
             }
             style={{ border: "none", borderRadius: "0", padding: "0" }}
@@ -268,7 +367,9 @@ const TemplatePage = () => {
             style={{ border: "none", borderRadius: "0" }}
             onClick={() => handleDelete(record.key)}
           />
-        </Space>
+          <EyeOutlined style={{color:'#29CC3980'}}/>
+        </Space> 
+      
       ),
     },
   ];
@@ -277,23 +378,33 @@ const TemplatePage = () => {
     <MainLayout>
       <div className="firstContainer">
         <div className="p-0">
-        <TemplateHeader title="All Templates" description="Create contact for your users to leverage GPT to  email systems to keep your data secure" />
+        <TemplateHeader
+  title="Tags"
+  description="We've implemented additional security measures to safeguard your data."
+  src='../../assets/icons/tagsImg.png'
+>
+ 
+</TemplateHeader>
 
-        
-          <div className="flex flex-col sm:flex-row justify-between items-center mb-4 space-y-2 sm:space-y-0">
-            <Input.Search
+          <div className="flex flex-col md:flex-col lg:flex-row justify-between items-center mb-4 space-y-2 md:space-y-0 gap-[7px]">
+            <Input
               placeholder="Search by template name"
-              className="w-full max-w-[180px] sm:w-auto text-sm"
+              suffix={<SearchOutlined style={{ color: "#BFBFBF" }} />}
+              className="w-full max-w-[220px] md:max-w-[200px] lg:max-w-[220px] text-sm"
               style={{
-                border: "2px",
+                border: "2px solid #F5F6F7",
                 borderRadius: "5px",
+                height: "40px",
               }}
             />
+
+       
+
             <button
-              className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[180px] sm:w-auto text-sm"
+              className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[180px] md:w-auto lg:w-auto text-sm mt-2 md:mt-0 lg:mt-0"
               onClick={handleCreateNewTemplate}
             >
-              + Create New Template
+              + Add New Tag
             </button>
           </div>
 
@@ -330,6 +441,7 @@ const TemplatePage = () => {
                 >
                   Delete
                 </AntButton>
+               
                 <AntButton
                   type="text"
                   className="mr-2"
@@ -347,7 +459,7 @@ const TemplatePage = () => {
           )}
           <div className="responsive-width bg-white shadow-md rounded-md lg:px-4">
             <Table
-              dataSource={dataSource}
+              dataSource={filteredData}
               columns={columns}
               pagination={false}
               className="responsive-width"
@@ -376,28 +488,31 @@ const TemplatePage = () => {
           }}
         >
           <Form.Item
-            label="Template Title"
+            label="Created Date"
             name="name"
             rules={[{ required: true, message: "Please enter the title" }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            label="Input Prompt"
+            label="Contacts Assigned"
             name="prompt"
             rules={[{ required: true, message: "Please enter the prompt" }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            label="Tone"
+            label="Tags"
             name="tone"
             rules={[{ required: true, message: "Please enter the tone" }]}
           >
             <Input />
           </Form.Item>
           <Form.Item>
-            <AntButton style={{background: '#1565C0',color:'#fff'}}htmlType="submit">
+            <AntButton
+              style={{ background: "#1565C0", color: "#fff" }}
+              htmlType="submit"
+            >
               {isCreatingNew ? "Create" : "Save"}
             </AntButton>
           </Form.Item>
@@ -407,4 +522,13 @@ const TemplatePage = () => {
   );
 };
 
-export default TemplatePage;
+export default AudiencePage;
+
+
+
+
+
+
+
+
+
