@@ -233,6 +233,11 @@ body {
       display: none;
     }
   }
+  @media (max-width: 768px) {
+    .borderLine {
+      display: none;
+    }
+  }
   @media (min-width: 1024px) and (max-width: 1024px) {
     .custom-max-w-748 {
       max-width: 748px;

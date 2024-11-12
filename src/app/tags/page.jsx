@@ -381,7 +381,8 @@ const AudiencePage = () => {
         <TemplateHeader
   title="Tags"
   description="We've implemented additional security measures to safeguard your data."
-  src='../../assets/icons/tagsImg.png'
+ Image={tagsImg}
+           
 >
  
 </TemplateHeader>

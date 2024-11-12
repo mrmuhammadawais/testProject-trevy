@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import People from "../../assets/icons/people.png";
 import tagsImg from '../../assets/icons/tagsImg.png'
-const TemplateHeader = ({ title, description }) => {
+const TemplateHeader = ({ title, description,Image: HeaderImage }) => {
   return (
     <div
       className="responsive-width bg-white shadow-md p-4 md:p-6 rounded-md relative mb-4 md:mb-6"
@@ -17,7 +17,7 @@ const TemplateHeader = ({ title, description }) => {
         </div>
         <div className="flex justify-center md:justify-end">
           <Image
-            src={People}
+           src={HeaderImage || People}
            
             alt="People"
             width={150}
