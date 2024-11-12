@@ -9,6 +9,8 @@ import {
   Typography,
   Space,
   Divider,
+  Modal,
+  Input,
 } from "antd";
 
 import {
@@ -28,6 +30,10 @@ import {
 import MainLayout from "@/components/app-components/Layout/MainLayout";
 import React from "react";
 import { useState } from "react";
+// import ReactQuill from "react-quill";
+import dynamic from 'next/dynamic';
+
+import "react-quill/dist/quill.snow.css";
 const { Title, Text } = Typography;
 
 const tags = [
@@ -45,34 +51,45 @@ const emailData = [
   {
     sender: "Henry Paul",
     subject: "Automate your system with trevy.io",
-    preview: "Dear Henry Paul, We are introducing..",
+    preview: "Dear Henry Paul, We are introducing",
     date: "19 Mar",
   },
   {
     sender: "Henry Paul",
     subject: "Automate your system with trevy.io",
-    preview: "Dear Henry Paul, We are introducing..",
+    preview: "Dear Henry Paul, We are introducing",
     date: "19 Mar",
   },
   {
     sender: "Henry Paul",
     subject: "Automate your system with trevy.io",
-    preview: "Dear Henry Paul, We are introducing..",
+    preview: "Dear Henry Paul, We are introducing",
     date: "19 Mar",
   },
   {
     sender: "Henry Paul",
     subject: "Automate your system with trevy.io",
-    preview: "Dear Henry Paul, We are introducing..",
+    preview: "Dear Henry Paul, We are introducing",
     date: "19 Mar",
   },
   {
     sender: "Henry Paul",
     subject: "Automate your system with trevy.io",
-    preview: "Dear Henry Paul, We are introducing..",
+    preview: "Dear Henry Paul, We are introducing",
     date: "19 Mar",
   },
 ];
+const toolbarOptions = [
+  [{ font: [] }],
+  [{ size: ["small", false, "large", "huge"] }],
+  [{ align: [] }],
+  ["bold", "italic", "underline", "strike"],
+  [{ list: "ordered" }, { list: "bullet" }],
+  ["link", "image"],
+  [{ color: [] }, { background: [] }],
+];
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+
 const activityData = [
   {
     date: "November 7, 2023",
@@ -113,6 +130,24 @@ const activityData = [
 ];
 
 export default function Segments() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [emailContent, setEmailContent] = useState("");
+  const [to, setTo] = useState("");
+  const [from, setFrom] = useState("");
+  const [subject, setSubject] = useState("");
+  const handleSendEmail = () => {
+    console.log("Sending email with content:", emailContent);
+    setIsModalVisible(false);
+  };
+
+  const handleOpenModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
+
   const [currentPage, setCurrentPage] = useState(0);
   const pageSize = 3;
 
@@ -148,6 +183,7 @@ export default function Segments() {
             borderStyle: "solid",
             borderRadius: "5px",
             padding: "10px",
+            marginLeft: "-14px",
           }}
         />
       ),
@@ -163,7 +199,7 @@ export default function Segments() {
           className="mab text-gray-600 text-xs font-semibold truncate"
           style={{
             fontSize: "12px",
-            marginLeft: "-24px",
+            marginLeft: "-47px",
             color: "#65728C",
             fontSize: "12px",
           }}
@@ -181,7 +217,7 @@ export default function Segments() {
           className="mab text-gray-600 text-xs font-semibold truncate "
           style={{
             fontSize: "12px",
-            marginLeft: "-59px",
+            marginLeft: "-77px",
             color: "#65728C",
             fontSize: "12px",
           }}
@@ -220,11 +256,11 @@ export default function Segments() {
           <div className="flex gap-2 truncate">
             <DeleteOutlined
               className="text-red-500"
-              style={{ fontSize: "12px", color: "#FF6B6B" }}
+              style={{ fontSize: "13px", color: "#FF6B6B" }}
             />
             <MailOutlined
               className="text-blue-700"
-              style={{ fontSize: "12px", color: "#1E4D8E" }}
+              style={{ fontSize: "13px", color: "#1E4D8E" }}
             />
           </div>
         </div>
@@ -256,10 +292,57 @@ export default function Segments() {
                     >
                       Street 17, D-block, Citi Housing Society, Jhelum, PK
                     </Text>
-                    <button className="bg-[#1565C0] text-white py-1 px-4 rounded-full mt-3">
+                    <button
+                      className="bg-[#1565C0] text-white py-1 px-4 rounded-full mt-3"
+                      onClick={handleOpenModal}
+                    >
                       Write an out-reach email
                     </button>
                   </Col>
+                  <Modal
+                    title="New Email"
+                    visible={isModalVisible}
+                    onCancel={handleCloseModal}
+                    footer={[
+                      <Button
+                        key="send"
+                        type="primary"
+                        onClick={handleSendEmail}
+                      >
+                        Send Email
+                      </Button>,
+                    ]}
+                    width={800}
+                  >
+                    <Space direction="vertical" style={{ width: "100%" }}>
+                      <Input
+                        placeholder="To"
+                        value={to}
+                        onChange={(e) => setTo(e.target.value)}
+                        style={{ marginBottom: 10 }}
+                      />
+                      <Input
+                        placeholder="From"
+                        value={from}
+                        onChange={(e) => setFrom(e.target.value)}
+                        style={{ marginBottom: 10 }}
+                      />
+                      <Input
+                        placeholder="Subject"
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                        style={{ marginBottom: 10 }}
+                      />
+                    </Space>
+
+                    <ReactQuill
+                      value={emailContent}
+                      onChange={setEmailContent}
+                      modules={{ toolbar: toolbarOptions }}
+                      placeholder="Write your email content here... "
+                      style={{ marginTop: 20, minHeight: 200 }}
+                    />
+                  </Modal>
                   <Col className="flex items-center justify-center">
                     <div
                       className="borderLine absolute border-l border-gray-300"
@@ -376,7 +459,7 @@ export default function Segments() {
 
                 <div
                   className="flex flex-wrap gap-2 mt-4 lg-w-[465px]"
-                  style={{ gap: "16px" }}
+                  style={{ gap: "15px" }}
                 >
                   {tags.map((tag, index) => (
                     <Tag
@@ -387,7 +470,7 @@ export default function Segments() {
                         fontSize: "12px",
                         fontWeight: 700,
                         background: "#ECF0F1",
-                        border: "7px solid #ECF0F1",
+                        border: "2px solid #ECF0F1",
                         borderRadius: "15px",
                       }}
                     >
@@ -558,3 +641,5 @@ export default function Segments() {
     </MainLayout>
   );
 }
+
+
