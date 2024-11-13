@@ -9,6 +9,8 @@ import {
   Modal,
   Form,
   Select,
+  Row,
+  Col,
 } from "antd";
 import {
   DeleteOutlined,
@@ -23,6 +25,7 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "@/components/app-components/Layout/MainLayout";
 import tagsImg from "../../assets/icons/tagsImg.png";
+import newtagImg from "../../assets/icons/newtagImg.png"
 import TemplateHeader from "@/components/functional-components/TemplateHeader";
 import {
   toggleSelectTemplate,
@@ -491,21 +494,21 @@ const AudiencePage = () => {
           <Form.Item
             label="Created Date"
             name="name"
-            rules={[{ required: true, message: "Please enter the title" }]}
+            rules={[{ required: true, message: "Please enter the created Date" }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             label="Contacts Assigned"
             name="prompt"
-            rules={[{ required: true, message: "Please enter the prompt" }]}
+            rules={[{ required: true, message: "please Enter the Contacts Assigned" }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             label="Tags"
             name="tone"
-            rules={[{ required: true, message: "Please enter the tone" }]}
+            rules={[{ required: true, message: "Please enter the tag" }]}
           >
             <Input />
           </Form.Item>
@@ -519,7 +522,9 @@ const AudiencePage = () => {
           </Form.Item>
         </Form>
       </Modal>
-    </MainLayout>
+     
+    </MainLayout> 
+   
   );
 };
 

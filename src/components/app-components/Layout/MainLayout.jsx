@@ -95,7 +95,7 @@ const SidebarContent = ({ isSidebarVisible, toggleSidebar }) => {
       children: [
         {
           key: "Contact1",
-          label: <Link href="/audience">All Contact</Link>,
+          label: <Link href="/contacts">All Contact</Link>,
         },
         {
           key: "segment",

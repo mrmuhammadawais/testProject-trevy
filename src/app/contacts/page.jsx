@@ -381,7 +381,7 @@ const AudiencePage = () => {
           <AntButton
             icon={<EyeOutlined style={{ color: " #29CC3980" }} />}
             style={{ border: "none", borderRadius: "0" }}
-            onClick={() => handleDelete(record.key)}
+            // onClick={() => handleDelete(record.key)}
           />
         </Space>
       ),
@@ -541,7 +541,7 @@ const AudiencePage = () => {
         </div>
       </div>
       <Modal
-        title={isCreatingNew ? "Create New Template" : "Edit Template"}
+        title={isCreatingNew ? "Create New Contacts" : "Edit Contacts"}
         visible={isModalVisible}
         onCancel={handleModalCancel}
         footer={null}
@@ -559,21 +559,21 @@ const AudiencePage = () => {
           <Form.Item
             label="Full Name"
             name="name"
-            rules={[{ required: true, message: "Please enter the title" }]}
+            rules={[{ required: true, message: "Please enter the Full Name" }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             label="Email Address"
             name="prompt"
-            rules={[{ required: true, message: "Please enter the prompt" }]}
+            rules={[{ required: true, message: "Please enter the Email Address" }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             label="Tags"
             name="tone"
-            rules={[{ required: true, message: "Please enter the tone" }]}
+            rules={[{ required: true, message: "Please enter the Tags" }]}
           >
             <Input />
           </Form.Item>

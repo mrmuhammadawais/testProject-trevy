@@ -32,7 +32,6 @@ import React from "react";
 import { useState } from "react";
 // import ReactQuill from "react-quill";
 import dynamic from 'next/dynamic';
-
 import "react-quill/dist/quill.snow.css";
 const { Title, Text } = Typography;
 
@@ -46,7 +45,7 @@ const tags = [
   "Cargo",
   "Transportation and Logistics",
 ];
-
+const initialContent = `Dear [Gorge],<br/><br/>I hope this email finds you well. We wanted to express our sincere gratitude for choosing to visit our property recently. We value your patronage and trust that your experience was enjoyable.<br/><br/>We would love to hear more about your visit and any feedback you might have. Your insights are essential to us in enhancing our services and ensuring that every guest has a memorable experience.<br/><br/>Thank you once again for choosing us, and we look forward to welcoming you back soon.`;
 const emailData = [
   {
     sender: "Henry Paul",
@@ -135,10 +134,11 @@ export default function Segments() {
   const [to, setTo] = useState("");
   const [from, setFrom] = useState("");
   const [subject, setSubject] = useState("");
-  const handleSendEmail = () => {
-    console.log("Sending email with content:", emailContent);
-    setIsModalVisible(false);
-  };
+  
+  // const handleSendEmail = () => {
+  //   console.log("Sending email with content:", emailContent);
+  //   setIsModalVisible(false);
+  // };
 
   const handleOpenModal = () => {
     setIsModalVisible(true);
@@ -147,6 +147,19 @@ export default function Segments() {
   const handleCloseModal = () => {
     setIsModalVisible(false);
   };
+  const handleSendEmail = () => {
+    // Add your email sending logic here (e.g., API call)
+
+    // Reset the form fields after sending the email
+    setTo('');
+    setFrom('');
+    setSubject('');
+    setEmailContent('');
+
+    // Close the modal after sending the email
+    handleCloseModal();
+  };
+
 
   const [currentPage, setCurrentPage] = useState(0);
   const pageSize = 3;
@@ -166,6 +179,10 @@ export default function Segments() {
     if (currentPage > 0) {
       setCurrentPage((prev) => prev - 1);
     }
+  };
+  const handleDelete = (key) => {
+    setFilteredData((prevData) => prevData.filter((item) => item.key !== key));
+    setDataSource((prevData) => prevData.filter((item) => item.key !== key));
   };
   const emailColumns = [
     {
@@ -257,6 +274,7 @@ export default function Segments() {
             <DeleteOutlined
               className="text-red-500"
               style={{ fontSize: "13px", color: "#FF6B6B" }}
+              onClick={() => handleDelete(record.key)}
             />
             <MailOutlined
               className="text-blue-700"
@@ -267,6 +285,8 @@ export default function Segments() {
       ),
     },
   ];
+  const [dataSource, setDataSource] = useState(emailColumns);
+  const [filteredData, setFilteredData] = useState(emailColumns);
   return (
     <MainLayout>
       <div className="bg-gray-100 min-h-screen flex justify-center overflow-hidden">
@@ -299,50 +319,75 @@ export default function Segments() {
                       Write an out-reach email
                     </button>
                   </Col>
-                  <Modal
-                    title="New Email"
-                    visible={isModalVisible}
-                    onCancel={handleCloseModal}
-                    footer={[
-                      <Button
-                        key="send"
-                        type="primary"
-                        onClick={handleSendEmail}
-                      >
-                        Send Email
-                      </Button>,
-                    ]}
-                    width={800}
-                  >
-                    <Space direction="vertical" style={{ width: "100%" }}>
-                      <Input
-                        placeholder="To"
-                        value={to}
-                        onChange={(e) => setTo(e.target.value)}
-                        style={{ marginBottom: 10 }}
-                      />
-                      <Input
-                        placeholder="From"
-                        value={from}
-                        onChange={(e) => setFrom(e.target.value)}
-                        style={{ marginBottom: 10 }}
-                      />
-                      <Input
-                        placeholder="Subject"
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
-                        style={{ marginBottom: 10 }}
-                      />
-                    </Space>
+              
+<Modal
+  title="New Email"
+  visible={isModalVisible}
+  onCancel={handleCloseModal}
+  footer={[
+    <Button key="send" type="primary" onClick={handleSendEmail}>
+      Send Email
+    </Button>,
+  ]}
+  width={800}
+  style={{ paddingBottom: 0 }}
+  bodyStyle={{ paddingBottom: '60px' }}
+>
+  <Space direction="vertical" style={{ width: "100%" }}>
+    <Input
+      placeholder="To: henry33@diyod.info "
+      value={to}
+      onChange={(e) => setTo(e.target.value)}
+      style={{ marginBottom: 10, color: '#7D8FB3' }}
+    />
+    <Input
+      placeholder="From"
+      value={from}
+      onChange={(e) => setFrom(e.target.value)}
+      style={{ marginBottom: 10 }}
+    />
+    <Input
+      placeholder="Subject"
+      value={subject}
+      onChange={(e) => setSubject(e.target.value)}
+      style={{ marginBottom: 10 }}
+    />
+  </Space>
+  <ReactQuill
+  value={emailContent || initialContent} 
+  onChange={setEmailContent}
+  modules={{ toolbar: toolbarOptions }}
+  placeholder={`Dear [Gorge],\n\nI hope this email finds you well. We wanted to express our sincere gratitude for choosing to visit our property recently. We value your patronage and trust that your experience was enjoyable.\n\nWe would love to hear more about your visit and any feedback you might have. Your insights are essential to us in enhancing our services and ensuring that every guest has a memorable experience.\n\nThank you once again for choosing us, and we look forward to welcoming you back soon.`}
+  style={{
+    marginTop: 20,
+    background: '#F8F8F8',
+    height: '233px',
+    marginBottom: '20px',
+  }}
+/>
 
-                    <ReactQuill
-                      value={emailContent}
-                      onChange={setEmailContent}
-                      modules={{ toolbar: toolbarOptions }}
-                      placeholder="Write your email content here... "
-                      style={{ marginTop: 20, minHeight: 200 }}
-                    />
-                  </Modal>
+</Modal>
+
+<style jsx>
+  {`
+    @media (max-width: 320px) {
+      .ant-modal-body {
+        padding-bottom: 92px !important; /* Increase padding for small screens */
+      }
+      .ant-modal-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+      }
+      .ant-btn {
+        width: 100%; /* Ensure the button takes full width */
+      }
+    }
+  `}
+</style>
+
+
                   <Col className="flex items-center justify-center">
                     <div
                       className="borderLine absolute border-l border-gray-300"
@@ -458,8 +503,8 @@ export default function Segments() {
                 <h3 className="mt-4 font-bold text-black">Tags</h3>
 
                 <div
-                  className="flex flex-wrap gap-2 mt-4 lg-w-[465px]"
-                  style={{ gap: "15px" }}
+                  className="flex flex-wrap mt-4 lg-w-[465px]"
+                  style={{ gap: "27px" }}
                 >
                   {tags.map((tag, index) => (
                     <Tag
@@ -512,19 +557,23 @@ export default function Segments() {
                   padding: "0",
                   color: "white",
                 }}
-                bodyStyle={{ backgroundColor: "white" }}
+                bodyStyle={{ backgroundColor: "white",marginTop:'-25px' }}
               >
                 <Table
                   columns={emailColumns.map((col) => ({
                     ...col,
                     onCell: () => ({
-                      style: { padding: "1px 1px", fontSize: "10px" },
+                      style: { padding: "1px 1px", fontSize: "10px," },
                     }),
                   }))}
-                  dataSource={emailData.map((item, index) => ({
+                  dataSource={emailData.map((item, index) => ({ 
                     ...item,
                     key: index,
+                 
                   }))}
+                
+
+                 
                   pagination={false}
                   bordered={false}
                   showHeader={false}
@@ -641,5 +690,6 @@ export default function Segments() {
     </MainLayout>
   );
 }
+
 
 
