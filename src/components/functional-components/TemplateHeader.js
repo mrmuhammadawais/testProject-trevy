@@ -17,7 +17,7 @@ const TemplateHeader = ({ title, description,Image: HeaderImage }) => {
         </div>
         <div className="flex justify-center md:justify-end">
           <Image
-           src={HeaderImage || People}
+            src={HeaderImage || People}
            
             alt="People"
             width={150}

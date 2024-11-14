@@ -9,6 +9,7 @@ import {
   MenuOutlined,
   ArrowLeftOutlined,
   UsergroupAddOutlined,
+  SyncOutlined,
 } from "@ant-design/icons";
 import Logo from "../../../assets/icons/logo.png";
 import Link from "next/link";
@@ -105,6 +106,19 @@ const SidebarContent = ({ isSidebarVisible, toggleSidebar }) => {
           key: "Tags",
           label: <Link href="/tags">Tags</Link>,
         },
+       
+      ],
+    },
+    {
+      key: "automation",
+      icon: <SyncOutlined/>,
+      label: "Automation",
+      children: [
+        {
+          key: "All Automation",
+          label: <Link href="/automation">All Automation</Link>,
+        },
+   
        
       ],
     },

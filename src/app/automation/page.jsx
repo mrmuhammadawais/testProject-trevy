@@ -10,12 +10,16 @@ import {
   Row,
   Col,
   Form,
+ 
 } from "antd";
+import { Switch } from 'antd';
+
 import {
   DeleteOutlined,
   EditOutlined,
   EyeOutlined,
   SearchOutlined,
+  
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "@/components/app-components/Layout/MainLayout";
@@ -31,13 +35,13 @@ const initialData = [
   {
     key: "1",
     name: (
-      <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-        11-2-2024
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+        23-12-24
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        10
+        2
       </span>
     ),
     tone: (
@@ -46,27 +50,35 @@ const initialData = [
           color: "#7D8FB3",
           fontSize: "12px",
           fontWeight: 700,
-          background: "#ECF0F1",
-          border: "2px solid #ECF0F1",
-          borderRadius: "15px",
-          borderWidth: "thick",
         }}
       >
-        BADGE
+        Test Automation 1
       </span>
     ),
-    toneValue: "BADGE",
+    enabled: (
+      <span
+        style={{
+          color: "#7D8FB3", // Correct color format
+          fontSize: "12px",
+          fontWeight: 700,
+        }}
+      >
+       <Switch/>
+      </span>
+    ),
+  
   },
+  
   {
     key: "2",
     name: (
-      <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-        11-2-2024
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+      23-12-24
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        10
+        2
       </span>
     ),
     tone: (
@@ -75,27 +87,35 @@ const initialData = [
           color: "#7D8FB3",
           fontSize: "12px",
           fontWeight: 700,
-          background: "#ECF0F1",
-          border: "2px solid #ECF0F1",
-          borderRadius: "15px",
-          borderWidth: "thick",
+        
         }}
       >
-        BADGE
+              Test Automation 2
+
       </span>
     ),
-    toneValue: "BADGE",
+    enabled: (
+      <span
+        style={{
+          color: "#7D8FB3", // Correct color format
+          fontSize: "12px",
+          fontWeight: 700,
+        }}
+      >
+       <Switch/>
+      </span>
+    ),
   },
   {
     key: "3",
     name: (
-      <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-        11-2-2024
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+      23-12-24
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        10
+        2
       </span>
     ),
     tone: (
@@ -104,27 +124,35 @@ const initialData = [
           color: "#7D8FB3",
           fontSize: "12px",
           fontWeight: 700,
-          background: "#ECF0F1",
-          border: "2px solid #ECF0F1",
-          borderRadius: "15px",
-          borderWidth: "thick",
+       
         }}
       >
-        BADGE
+              Test Automation 3
+
       </span>
     ),
-    toneValue: "BADGE",
+    enabled: (
+      <span
+        style={{
+          color: "#7D8FB3", // Correct color format
+          fontSize: "12px",
+          fontWeight: 700,
+        }}
+      >
+       <Switch/>
+      </span>
+    ),
   },
   {
     key: "4",
     name: (
-      <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-        11-2-2024
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+       23-12-24
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        10
+        2
       </span>
     ),
     tone: (
@@ -133,27 +161,35 @@ const initialData = [
           color: "#7D8FB3",
           fontSize: "12px",
           fontWeight: 700,
-          background: "#ECF0F1",
-          border: "2px solid #ECF0F1",
-          borderRadius: "15px",
-          borderWidth: "thick",
+        
         }}
       >
-        BADGE
+              Test Automation 4
+
       </span>
     ),
-    toneValue: "BADGE",
+    enabled: (
+      <span
+        style={{
+          color: "#7D8FB3", // Correct color format
+          fontSize: "12px",
+          fontWeight: 700,
+        }}
+      >
+       <Switch/>
+      </span>
+    ),
   },
   {
     key: "5",
     name: (
-      <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-        11-2-2024
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+       23-12-24
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        10
+        2
       </span>
     ),
     tone: (
@@ -162,19 +198,65 @@ const initialData = [
           color: "#7D8FB3",
           fontSize: "12px",
           fontWeight: 700,
-          background: "#ECF0F1",
-          border: "2px solid #ECF0F1",
-          borderRadius: "15px",
-          borderWidth: "thick",
+         
         }}
       >
-        BADGE
+              Test Automation 5
+
+      </span>
+    ),
+    enabled: (
+      <span
+        style={{
+          color: "#7D8FB3", // Correct color format
+          fontSize: "12px",
+          fontWeight: 700,
+        }}
+      >
+       <Switch/>
+      </span>
+    ),
+  },
+  {
+    key: "6",
+    name: (
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+       23-12-24
+      </span>
+    ),
+    prompt: (
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+        2
+      </span>
+    ),
+    tone: (
+      <span
+        style={{
+          color: "#7D8FB3",
+          fontSize: "12px",
+          fontWeight: 700,
+         
+        }}
+      >
+              Test Automation 6
+
+      </span>
+    ),
+    enabled: (
+      <span
+        style={{
+          color: "#7D8FB3", // Correct color format
+          fontSize: "12px",
+          fontWeight: 700,
+        }}
+      >
+       <Switch/>
       </span>
     ),
   },
 ];
 
-const Tags = () => {
+const AllAutomation = () => {
   const dispatch = useDispatch();
   const selectedTemplates =
     useSelector((state) => state.prompt.selectedTemplates) || [];
@@ -184,11 +266,19 @@ const Tags = () => {
   const [editTemplate, setEditTemplate] = useState(null);
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [form] = Form.useForm();
+  const [isEnabled, setIsEnabled] = useState(false);
+const handleToggle = (checked) => {
 
+    setIsEnabled(checked);
+  };
   const handleReset = () => {
     setFilteredData(dataSource);
   };
-
+  const handleModalCancel = () => {
+    setIsModalVisible(false);
+    setEditTemplate(null);
+    form.resetFields();
+  };
   const handleSelectTemplate = (key) => {
     dispatch(toggleSelectTemplate(key));
   };
@@ -229,7 +319,7 @@ const Tags = () => {
   const handleModalOk = (values) => {
     const styledValues = {
       name: (
-        <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
+        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
           {values.name}
         </span>
       ),
@@ -244,15 +334,13 @@ const Tags = () => {
             color: "#7D8FB3",
             fontSize: "12px",
             fontWeight: 700,
-            background: "#ECF0F1",
-            border: "2px solid #ECF0F1",
-            borderRadius: "15px",
-            borderWidth: "thick",
+       
           }}
         >
           {values.tone}
         </span>
       ),
+      enabled:true,
     };
 
     if (isCreatingNew) {
@@ -284,17 +372,13 @@ const Tags = () => {
     form.resetFields();
   };
 
-  const handleModalCancel = () => {
-    setIsModalVisible(false);
-    setEditTemplate(null);
-    form.resetFields();
-  };
+  
 
   const columns = [
     {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-          Tags
+          Automation Name
         </span>
       ),
       dataIndex: "tone",
@@ -322,10 +406,20 @@ const Tags = () => {
     {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-          Contacts Assigned
+         Time Runs
         </span>
       ),
       dataIndex: "prompt",
+      key: "prompt",
+      width: 500,
+    },
+    {
+      title: (
+        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+         Enable/Disable Toggle
+        </span>
+      ),
+      dataIndex: "enabled",
       key: "prompt",
       width: 500,
     },
@@ -358,14 +452,14 @@ const Tags = () => {
       <div className="firstContainer">
         <div className="p-0">
           <TemplateHeader
-            title="Tags"
-            description="We've implemented additional security measures to safeguard your data."
-            Image={tagsImg}
+            title="Automation Journeys"
+            description="Create contact for your users to leverage GPT to  email systems to keep your data secure"
+               
           ></TemplateHeader>
 
           <div className="flex flex-col md:flex-col lg:flex-row justify-between items-center mb-4 space-y-2 md:space-y-0 gap-[7px]">
             <Input
-              placeholder="Search by template name"
+              placeholder="Search by automation name"
               suffix={<SearchOutlined style={{ color: "#BFBFBF" }} />}
               className="w-full max-w-[220px] md:max-w-[200px] lg:max-w-[220px] text-sm"
               style={{
@@ -376,10 +470,10 @@ const Tags = () => {
             />
 
             <button
-              className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[180px] md:w-auto lg:w-auto text-sm mt-2 md:mt-0 lg:mt-0"
+              className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[200px] md:w-auto lg:w-auto text-sm mt-2 md:mt-0 lg:mt-0"
               onClick={handleCreateNewTemplate}
             >
-              + Add New Tag
+              + Create New Automation
             </button>
           </div>
 
@@ -425,7 +519,7 @@ const Tags = () => {
                     borderRadius: "5px",
                     padding: "0 10px",
                   }}
-                  onClick={handleDeleteSelected}
+                  onClick={handleModalCancel}
                 >
                   Cancel
                 </AntButton>
@@ -448,13 +542,7 @@ const Tags = () => {
       </div>
 
       <Modal
-        title={
-          <div
-            style={{ display: "flex", justifyContent: "center", width: "100%" }}
-          >
-            {isCreatingNew ? "Create New Tags" : "Edit Tags"}
-          </div>
-        }
+        title={isCreatingNew ? "Create New Template" : "Edit Template"}
         visible={isModalVisible}
         onCancel={handleModalCancel}
         footer={null}
@@ -469,51 +557,28 @@ const Tags = () => {
             tone: editTemplate?.tone?.props?.children,
           }}
         >
-          {isCreatingNew ? (
-            <>
-              <Form.Item
-                label="Created Date"
-                name="name"
-                rules={[
-                  { required: true, message: "Please enter the Created Date" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                label="Contacts Assigned"
-                name="prompt"
-                rules={[
-                  { required: true, message: "Please enter Contacts Assigned" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                label="Tags"
-                name="tone"
-                rules={[{ required: true, message: "Please enter a tag" }]}
-              >
-                <Input />
-              </Form.Item>
-            </>
-          ) : (
-            <Row gutter={16}>
-              <Col span={8}>
-                <img src={newtagImg.src} alt="Tags" width={226} height={226} />
-              </Col>
-              <Col span={16}>
-                <Form.Item
-                  label="Tags"
-                  name="tone"
-                  rules={[{ required: true, message: "Please enter a tag" }]}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-            </Row>
-          )}
-
+          <Form.Item
+            label="Automation"
+            name="name"
+            rules={[{ required: true, message: "Please enter the Automation" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Created Date"
+            name="prompt"
+            rules={[{ required: true, message: "Please enter the Created Date" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Time Runs"
+            name="tone"
+            rules={[{ required: true, message: "Please enter the Time Runs" }]}
+          >
+            <Input />
+          </Form.Item>
+        
           <Form.Item style={{ display: "flex", justifyContent: "flex-end" }}>
             <AntButton
               style={{ background: "#1565C0", color: "#fff" }}
@@ -528,4 +593,6 @@ const Tags = () => {
   );
 };
 
-export default Tags;
+export default AllAutomation;
+
+
