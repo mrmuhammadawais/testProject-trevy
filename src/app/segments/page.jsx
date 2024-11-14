@@ -690,6 +690,3 @@ export default function Segments() {
     </MainLayout>
   );
 }
-
-
-

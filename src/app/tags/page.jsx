@@ -7,25 +7,20 @@ import {
   Space,
   Button as AntButton,
   Modal,
-  Form,
-  Select,
   Row,
   Col,
+  Form,
 } from "antd";
 import {
   DeleteOutlined,
   EditOutlined,
   EyeOutlined,
-  FilterOutlined,
-  MailOutlined,
   SearchOutlined,
-  TagsOutlined,
 } from "@ant-design/icons";
-import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "@/components/app-components/Layout/MainLayout";
 import tagsImg from "../../assets/icons/tagsImg.png";
-import newtagImg from "../../assets/icons/newtagImg.png"
+import newtagImg from "../../assets/icons/newtagImg.png";
 import TemplateHeader from "@/components/functional-components/TemplateHeader";
 import {
   toggleSelectTemplate,
@@ -37,12 +32,12 @@ const initialData = [
     key: "1",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-       11-2-2024
+        11-2-2024
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-       10
+        10
       </span>
     ),
     tone: (
@@ -71,7 +66,7 @@ const initialData = [
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-       10
+        10
       </span>
     ),
     tone: (
@@ -95,12 +90,12 @@ const initialData = [
     key: "3",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-      11-2-2024
+        11-2-2024
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-       10
+        10
       </span>
     ),
     tone: (
@@ -124,12 +119,12 @@ const initialData = [
     key: "4",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-       11-2-2024
+        11-2-2024
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-      10
+        10
       </span>
     ),
     tone: (
@@ -162,21 +157,21 @@ const initialData = [
       </span>
     ),
     tone: (
-        <span
-          style={{
-            color: "#7D8FB3",
-            fontSize: "12px",
-            fontWeight: 700,
-            background: "#ECF0F1",
-            border: "2px solid #ECF0F1",
-            borderRadius: "15px",
-            borderWidth: "thick",
-          }}
-        >
-          BADGE
-        </span>
-      ),
-    }
+      <span
+        style={{
+          color: "#7D8FB3",
+          fontSize: "12px",
+          fontWeight: 700,
+          background: "#ECF0F1",
+          border: "2px solid #ECF0F1",
+          borderRadius: "15px",
+          borderWidth: "thick",
+        }}
+      >
+        BADGE
+      </span>
+    ),
+  },
 ];
 
 const AudiencePage = () => {
@@ -189,12 +184,11 @@ const AudiencePage = () => {
   const [editTemplate, setEditTemplate] = useState(null);
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [form] = Form.useForm();
-  const [selectedTag, setSelectedTag] = useState(null);
 
   const handleReset = () => {
-    setSelectedTag(null);
     setFilteredData(dataSource);
   };
+
   const handleSelectTemplate = (key) => {
     dispatch(toggleSelectTemplate(key));
   };
@@ -235,7 +229,7 @@ const AudiencePage = () => {
   const handleModalOk = (values) => {
     const styledValues = {
       name: (
-        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+        <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
           {values.name}
         </span>
       ),
@@ -271,12 +265,16 @@ const AudiencePage = () => {
     } else {
       setDataSource((prevData) =>
         prevData.map((item) =>
-          item.key === editTemplate.key ? { ...item, ...styledValues } : item
+          item.key === editTemplate.key
+            ? { ...item, tone: styledValues.tone }
+            : item
         )
       );
       setFilteredData((prevData) =>
         prevData.map((item) =>
-          item.key === editTemplate.key ? { ...item, ...styledValues } : item
+          item.key === editTemplate.key
+            ? { ...item, tone: styledValues.tone }
+            : item
         )
       );
     }
@@ -291,56 +289,46 @@ const AudiencePage = () => {
     setEditTemplate(null);
     form.resetFields();
   };
-  const handleTagFilterChange = (value) => {
-    setSelectedTag(value);
-    if (value) {
-      setFilteredData(dataSource.filter((item) => item.toneValue === value));
-    } else {
-      setFilteredData(dataSource);
-    }
-  };
 
   const columns = [
     {
-        title: (
-          <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-            Tags
-          </span>
-        ),
-        dataIndex: "tone",
-        key: "tone",
-        width:400,
-        render: (text, record) => (
-            <Checkbox
-              onChange={() => handleSelectTemplate(record.key)}
-              checked={selectedTemplates.includes(record.key)}
-            >
-              {text}
-            </Checkbox>
-          ),
-      },
+      title: (
+        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+          Tags
+        </span>
+      ),
+      dataIndex: "tone",
+      key: "tone",
+      width: 400,
+      render: (text, record) => (
+        <Checkbox
+          onChange={() => handleSelectTemplate(record.key)}
+          checked={selectedTemplates.includes(record.key)}
+        >
+          {text}
+        </Checkbox>
+      ),
+    },
     {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        Created Date
+          Created Date
         </span>
       ),
       dataIndex: "name",
       key: "name",
-      width:500,
-    
+      width: 500,
     },
     {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-           Contacts Assigned
+          Contacts Assigned
         </span>
       ),
       dataIndex: "prompt",
       key: "prompt",
-      width:500,
+      width: 500,
     },
- 
     {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
@@ -348,47 +336,32 @@ const AudiencePage = () => {
         </span>
       ),
       key: "actions",
-      
       render: (text, record) => (
         <Space>
           <AntButton
-            icon={
-              <EditOutlined
-                style={{
-                  color: "#3361FF",
-                  width: "18.75px",
-                  height: "18.75px",
-                }}
-               
-              />
-            }
-            style={{ border: "none", borderRadius: "0", padding: "0" }}
+            icon={<EditOutlined style={{ color: "#3361FF" }} />}
+            style={{ border: "none", padding: "0" }}
             onClick={() => handleEdit(record)}
           />
           <AntButton
             icon={<DeleteOutlined style={{ color: "#FF7979" }} />}
-            style={{ border: "none", borderRadius: "0" }}
+            style={{ border: "none" }}
             onClick={() => handleDelete(record.key)}
           />
-          <EyeOutlined style={{color:'#29CC3980'}}/>
-        </Space> 
-      
+          <EyeOutlined style={{ color: "#29CC3980" }} />
+        </Space>
       ),
     },
   ];
-
   return (
     <MainLayout>
       <div className="firstContainer">
         <div className="p-0">
-        <TemplateHeader
-  title="Tags"
-  description="We've implemented additional security measures to safeguard your data."
- Image={tagsImg}
-           
->
- 
-</TemplateHeader>
+          <TemplateHeader
+            title="Tags"
+            description="We've implemented additional security measures to safeguard your data."
+            Image={tagsImg}
+          ></TemplateHeader>
 
           <div className="flex flex-col md:flex-col lg:flex-row justify-between items-center mb-4 space-y-2 md:space-y-0 gap-[7px]">
             <Input
@@ -401,8 +374,6 @@ const AudiencePage = () => {
                 height: "40px",
               }}
             />
-
-       
 
             <button
               className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[180px] md:w-auto lg:w-auto text-sm mt-2 md:mt-0 lg:mt-0"
@@ -445,7 +416,7 @@ const AudiencePage = () => {
                 >
                   Delete
                 </AntButton>
-               
+
                 <AntButton
                   type="text"
                   className="mr-2"
@@ -475,8 +446,15 @@ const AudiencePage = () => {
           </div>
         </div>
       </div>
+
       <Modal
-        title={isCreatingNew ? "Create New Template" : "Edit Template"}
+        title={
+          <div
+            style={{ display: "flex", justifyContent: "center", width: "100%" }}
+          >
+            {isCreatingNew ? "Create New Tags" : "Edit Tags"}
+          </div>
+        }
         visible={isModalVisible}
         onCancel={handleModalCancel}
         footer={null}
@@ -491,28 +469,52 @@ const AudiencePage = () => {
             tone: editTemplate?.tone?.props?.children,
           }}
         >
-          <Form.Item
-            label="Created Date"
-            name="name"
-            rules={[{ required: true, message: "Please enter the created Date" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Contacts Assigned"
-            name="prompt"
-            rules={[{ required: true, message: "please Enter the Contacts Assigned" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Tags"
-            name="tone"
-            rules={[{ required: true, message: "Please enter the tag" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item>
+          {isCreatingNew ? (
+            <>
+              <Form.Item
+                label="Created Date"
+                name="name"
+                rules={[
+                  { required: true, message: "Please enter the Created Date" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                label="Contacts Assigned"
+                name="prompt"
+                rules={[
+                  { required: true, message: "Please enter Contacts Assigned" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                label="Tags"
+                name="tone"
+                rules={[{ required: true, message: "Please enter a tag" }]}
+              >
+                <Input />
+              </Form.Item>
+            </>
+          ) : (
+            <Row gutter={16}>
+              <Col span={8}>
+                <img src={newtagImg.src} alt="Tags" width={226} height={226} />
+              </Col>
+              <Col span={16}>
+                <Form.Item
+                  label="Tags"
+                  name="tone"
+                  rules={[{ required: true, message: "Please enter a tag" }]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+            </Row>
+          )}
+
+          <Form.Item style={{ display: "flex", justifyContent: "flex-end" }}>
             <AntButton
               style={{ background: "#1565C0", color: "#fff" }}
               htmlType="submit"
@@ -522,19 +524,8 @@ const AudiencePage = () => {
           </Form.Item>
         </Form>
       </Modal>
-     
-    </MainLayout> 
-   
+    </MainLayout>
   );
 };
 
 export default AudiencePage;
-
-
-
-
-
-
-
-
-
