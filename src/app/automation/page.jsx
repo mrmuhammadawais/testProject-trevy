@@ -58,7 +58,7 @@ const initialData = [
     enabled: (
       <span
         style={{
-          color: "#7D8FB3", // Correct color format
+          color: "#7D8FB3", 
           fontSize: "12px",
           fontWeight: 700,
         }}
@@ -78,7 +78,7 @@ const initialData = [
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        2
+        3
       </span>
     ),
     tone: (
@@ -97,7 +97,7 @@ const initialData = [
     enabled: (
       <span
         style={{
-          color: "#7D8FB3", // Correct color format
+          color: "#7D8FB3", 
           fontSize: "12px",
           fontWeight: 700,
         }}
@@ -115,7 +115,7 @@ const initialData = [
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        2
+        4
       </span>
     ),
     tone: (
@@ -134,7 +134,7 @@ const initialData = [
     enabled: (
       <span
         style={{
-          color: "#7D8FB3", // Correct color format
+          color: "#7D8FB3", 
           fontSize: "12px",
           fontWeight: 700,
         }}
@@ -152,7 +152,7 @@ const initialData = [
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        2
+        4
       </span>
     ),
     tone: (
@@ -171,7 +171,7 @@ const initialData = [
     enabled: (
       <span
         style={{
-          color: "#7D8FB3", // Correct color format
+          color: "#7D8FB3",
           fontSize: "12px",
           fontWeight: 700,
         }}
@@ -189,7 +189,7 @@ const initialData = [
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        2
+        4
       </span>
     ),
     tone: (
@@ -208,7 +208,7 @@ const initialData = [
     enabled: (
       <span
         style={{
-          color: "#7D8FB3", // Correct color format
+          color: "#7D8FB3",
           fontSize: "12px",
           fontWeight: 700,
         }}
@@ -226,7 +226,7 @@ const initialData = [
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        2
+        4
       </span>
     ),
     tone: (
@@ -245,7 +245,7 @@ const initialData = [
     enabled: (
       <span
         style={{
-          color: "#7D8FB3", // Correct color format
+          color: "#7D8FB3", 
           fontSize: "12px",
           fontWeight: 700,
         }}

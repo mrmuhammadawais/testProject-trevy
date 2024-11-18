@@ -127,7 +127,10 @@ const activityData = [
     repeat: 1,
   },
 ];
-
+const handleDelete = (key) => {
+  const updatedData = filteredData.filter(item => item.key !== key);
+  setFilteredData(updatedData); // Assuming you're using useState for filteredData
+};
 export default function Segments() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [emailContent, setEmailContent] = useState("");
@@ -573,7 +576,11 @@ export default function Segments() {
                   }))}
                 
 
-                 
+                //  dataSource={filteredData}
+   
+
+
+              
                   pagination={false}
                   bordered={false}
                   showHeader={false}
@@ -690,3 +697,5 @@ export default function Segments() {
     </MainLayout>
   );
 }
+
+

@@ -137,7 +137,6 @@ const SidebarContent = ({ isSidebarVisible, toggleSidebar }) => {
           />
         </div>
       )}
-
       <Menu
         mode="inline"
         defaultSelectedKeys={["dashboard"]}

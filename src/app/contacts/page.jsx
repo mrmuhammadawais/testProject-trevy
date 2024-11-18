@@ -19,10 +19,8 @@ import {
   SearchOutlined,
   TagsOutlined,
 } from "@ant-design/icons";
-import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "@/components/app-components/Layout/MainLayout";
-import People from "../../assets/icons/people.png";
 import TemplateHeader from "@/components/functional-components/TemplateHeader";
 import {
   toggleSelectTemplate,
@@ -33,7 +31,7 @@ const initialData = [
   {
     key: "1",
     name: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+      <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
         Zachary Gomez
       </span>
     ),
@@ -43,8 +41,9 @@ const initialData = [
         discussion of a property visit...
       </span>
     ),
-    tone: (
+    tone: [
       <span
+        key="BADGE"
         style={{
           color: "#7D8FB3",
           fontSize: "12px",
@@ -52,18 +51,19 @@ const initialData = [
           background: "#ECF0F1",
           border: "2px solid #ECF0F1",
           borderRadius: "15px",
-          borderWidth: "thick",
+          padding: "2px 8px",
+          marginRight: "5px",
         }}
       >
         BADGE
-      </span>
-    ),
-    toneValue: "BADGE",
+      </span>,
+    ],
+    toneValue: ["BADGE"],
   },
   {
     key: "2",
     name: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+      <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
         Amanda Montgomery
       </span>
     ),
@@ -73,8 +73,9 @@ const initialData = [
         discussion of a property visit...
       </span>
     ),
-    tone: (
+    tone: [
       <span
+        key="VALUE1"
         style={{
           color: "#7D8FB3",
           fontSize: "12px",
@@ -82,29 +83,31 @@ const initialData = [
           background: "#ECF0F1",
           border: "2px solid #ECF0F1",
           borderRadius: "15px",
-          borderWidth: "thick",
+          padding: "2px 8px",
+          marginRight: "5px",
         }}
       >
-        BADGE
-      </span>
-    ),
-    toneValue: "BADGE",
+       BADGE
+      </span>,
+    ],
+    toneValue: ["BADGE"],
   },
   {
     key: "3",
     name: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        Lester Holland
+      <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
+       Lester Holland
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        i.e. I would like to generate a follow up regarding our last week
-        discussion of a property visit...
+         i.e. I would like to generate a follow up regarding our last week
+         discussion of a property visit...
       </span>
     ),
-    tone: (
+    tone: [
       <span
+        key="VALUE2"
         style={{
           color: "#7D8FB3",
           fontSize: "12px",
@@ -112,29 +115,32 @@ const initialData = [
           background: "#ECF0F1",
           border: "2px solid #ECF0F1",
           borderRadius: "15px",
-          borderWidth: "thick",
+          padding: "2px 8px",
+          marginRight: "5px",
         }}
       >
         BADGE
-      </span>
-    ),
-    toneValue: "BADGE",
+      </span>,
+    ],
+    toneValue: ["BADGE"],
+
   },
   {
     key: "4",
     name: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        Max Allison
+      <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
+       Max Allison
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        i.e. I would like to generate a follow up regarding our last week
-        discussion of a property visit...
+         i.e. I would like to generate a follow up regarding our last week
+         discussion of a property visit...
       </span>
     ),
-    tone: (
+    tone: [
       <span
+        key="VALUE2"
         style={{
           color: "#7D8FB3",
           fontSize: "12px",
@@ -142,59 +148,46 @@ const initialData = [
           background: "#ECF0F1",
           border: "2px solid #ECF0F1",
           borderRadius: "15px",
-          borderWidth: "thick",
+          padding: "2px 8px",
+          marginRight: "5px",
         }}
       >
         BADGE
-      </span>
-    ),
-    toneValue: "BADGE",
+      </span>,
+    ],
+    toneValue: ["BADGE"],
   },
   {
     key: "5",
     name: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        Richard Gregory
+      <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
+       Richard Gregory
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        i.e. I would like to generate a follow up regarding our last week
-        discussion of a property visit...
+         i.e. I would like to generate a follow up regarding our last week
+         discussion of a property visit...
       </span>
     ),
-    tone: (
-      <span>
-        <span
-          style={{
-            color: "#7D8FB3",
-            fontSize: "12px",
-            fontWeight: 700,
-            background: "#ECF0F1",
-            border: "2px solid #ECF0F1",
-            borderRadius: "15px",
-            borderWidth: "thick",
-            marginRight: "8px",
-          }}
-        >
-          BADGE
-        </span>
-        <span
-          style={{
-            color: "#7D8FB3",
-            fontSize: "12px",
-            fontWeight: 700,
-            background: "#ECF0F1",
-            border: "2px solid #ECF0F1",
-            borderRadius: "15px",
-            borderWidth: "thick",
-          }}
-        >
-          BADGE
-        </span>
-      </span>
-    ),
-    toneValue: "BADGE, BADGE",
+    tone: [
+      <span
+        key="VALUE2"
+        style={{
+          color: "#7D8FB3",
+          fontSize: "12px",
+          fontWeight: 700,
+          background: "#ECF0F1",
+          border: "2px solid #ECF0F1",
+          borderRadius: "15px",
+          padding: "2px 8px",
+          marginRight: "5px",
+        }}
+      >
+        BADGE
+      </span>,
+    ],
+    toneValue: ["BADGE"],
   },
 ];
 
@@ -208,19 +201,30 @@ const AudiencePage = () => {
   const [editTemplate, setEditTemplate] = useState(null);
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [form] = Form.useForm();
-  const [selectedTag, setSelectedTag] = useState(null);
+  const [selectedTag, setSelectedTag] = useState([]);
+  const [showOptions, setShowOptions] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const options = [
+    { value: "VALUE1", label: "Value 1", tag: "Tag A" },
+    { value: "VALUE2", label: "Value 2", tag: "Tag B" },
+    { value: "VALUE3", label: "Value 3", tag: "Tag C" },
+    { value: "VALUE4", label: "Value 4", tag: "Tag D" },
+    { value: "VALUE5", label: "Value 5", tag: "Tag E" },
+    { value: "VALUE6", label: "Value 6", tag: "Tag F" },
+  ];
+
+  const handleAssignTaskClick = () => {
+    setShowOptions(!showOptions);
+  };
 
   const handleReset = () => {
-    setSelectedTag(null);
+    setSelectedTag([]);
     setFilteredData(dataSource);
   };
+
   const handleSelectTemplate = (key) => {
     dispatch(toggleSelectTemplate(key));
-  };
-
-  const handleDelete = (key) => {
-    setFilteredData((prevData) => prevData.filter((item) => item.key !== key));
-    setDataSource((prevData) => prevData.filter((item) => item.key !== key));
   };
 
   const handleDeleteSelected = () => {
@@ -238,7 +242,7 @@ const AudiencePage = () => {
     form.setFieldsValue({
       name: record.name.props.children,
       prompt: record.prompt.props.children,
-      tone: record.tone.props.children,
+      tone: record.toneValue,
     });
     setIsCreatingNew(false);
     setIsModalVisible(true);
@@ -254,7 +258,7 @@ const AudiencePage = () => {
   const handleModalOk = (values) => {
     const styledValues = {
       name: (
-        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+        <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
           {values.name}
         </span>
       ),
@@ -279,7 +283,6 @@ const AudiencePage = () => {
         </span>
       ),
     };
-
     if (isCreatingNew) {
       const newTemplate = {
         key: `${dataSource.length + 1}`,
@@ -310,19 +313,95 @@ const AudiencePage = () => {
     setEditTemplate(null);
     form.resetFields();
   };
+
   const handleTagFilterChange = (value) => {
     setSelectedTag(value);
-    if (value) {
-      setFilteredData(dataSource.filter((item) => item.toneValue === value));
+    if (value && value.length > 0) {
+      setFilteredData(
+        dataSource.filter((item) =>
+          item.toneValue.some((tag) => value.includes(tag))
+        )
+      );
     } else {
       setFilteredData(dataSource);
+    }
+  };
+
+  const handleAssignTags = () => {
+    if (selectedTag && selectedTag.length > 0) {
+      setDataSource((prevData) =>
+        prevData.map((item) => {
+          if (selectedTemplates.includes(item.key)) {
+            const newToneValue = Array.from(
+              new Set([...item.toneValue, ...selectedTag])
+            );
+            return {
+              ...item,
+              tone: newToneValue.map((tag) => (
+                <span
+                  key={tag}
+                  style={{
+                    color: "#7D8FB3",
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    background: "#ECF0F1",
+                    border: "2px solid #ECF0F1",
+                    borderRadius: "15px",
+                    padding: "2px 8px",
+                    marginRight: "5px",
+                  }}
+                >
+                  {tag}
+                </span>
+              )),
+              toneValue: newToneValue,
+            };
+          }
+          return item;
+        })
+      );
+
+      setFilteredData((prevData) =>
+        prevData.map((item) => {
+          if (selectedTemplates.includes(item.key)) {
+            const newToneValue = Array.from(
+              new Set([...item.toneValue, ...selectedTag])
+            );
+            return {
+              ...item,
+              tone: newToneValue.map((tag) => (
+                <span
+                  key={tag}
+                  style={{
+                    color: "#7D8FB3",
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    background: "#ECF0F1",
+                    border: "2px solid #ECF0F1",
+                    borderRadius: "15px",
+                    padding: "2px 8px",
+                    marginRight: "5px",
+                  }}
+                >
+                  {tag}
+                </span>
+              )),
+              toneValue: newToneValue,
+            };
+          }
+          return item;
+        })
+      );
+
+      setSelectedTag([]);
+      setShowOptions(false);
     }
   };
 
   const columns = [
     {
       title: (
-        <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+        <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
           Full Name
         </span>
       ),
@@ -355,6 +434,7 @@ const AudiencePage = () => {
       ),
       dataIndex: "tone",
       key: "tone",
+      render: (text) => <span>{text}</span>,
     },
     {
       title: (
@@ -381,12 +461,15 @@ const AudiencePage = () => {
           <AntButton
             icon={<EyeOutlined style={{ color: " #29CC3980" }} />}
             style={{ border: "none", borderRadius: "0" }}
-            // onClick={() => handleDelete(record.key)}
           />
         </Space>
       ),
     },
   ];
+
+  const filteredOptions = options.filter((option) =>
+    option.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <MainLayout>
@@ -394,7 +477,7 @@ const AudiencePage = () => {
         <div className="p-0">
           <TemplateHeader
             title="All Contacts"
-            description="Create contact for your users to leverage GPT to  email systems to keep your data secure"
+            description="Create contact for your users to leverage GPT to email systems to keep your data secure"
           />
           <div className="flex flex-col md:flex-col lg:flex-row justify-between items-center mb-4 space-y-2 md:space-y-0 gap-[7px]">
             <Input
@@ -415,6 +498,7 @@ const AudiencePage = () => {
               </div>
 
               <Select
+                mode="multiple"
                 value={selectedTag}
                 placeholder="Tags"
                 className="w-[100px] max-w-[220px] md:max-w-[200px] lg:max-w-[220px] text-sm"
@@ -423,10 +507,7 @@ const AudiencePage = () => {
                   borderRadius: "5px",
                 }}
                 onChange={handleTagFilterChange}
-                options={[
-                  { value: "BADGE", label: "BADGE" },
-                  { value: "AnotherTag", label: "Another Tag" },
-                ]}
+                options={options}
               />
 
               <Select
@@ -436,21 +517,9 @@ const AudiencePage = () => {
                   border: "2px solid #F5F6F7",
                   borderRadius: "5px",
                 }}
-                options={[
-                  { value: "stage1", label: "Stage 1" },
-                  { value: "stage2", label: "Stage 2" },
-                ]}
+                options={[{ value: "stage1", label: "Stage 1" }]}
               />
-              <button
-                onClick={() => {
-                  setFilteredData(dataSource);
-                  setSelectedTag(null);
-                  {
-                    handleReset;
-                  }
-                }}
-                style={{ color: "#686DE0" }}
-              >
+              <button onClick={handleReset} style={{ color: "#686DE0" }}>
                 Reset
               </button>
             </div>
@@ -471,16 +540,17 @@ const AudiencePage = () => {
                 color: "#ffffff",
                 borderRadius: "5px",
                 width: "100%",
-                height: "40px",
+                height: "auto", 
                 marginBottom: "12px",
                 border: "none",
+                flexWrap: "wrap", 
               }}
             >
-              <span className="text-sm">
+              <span className="text-sm flex items-center">
                 {selectedTemplates.length} item
                 {selectedTemplates.length > 1 ? "s" : ""} selected
               </span>
-              <div className="flex items-center">
+              <div className="flex items-center flex-wrap">
                 <AntButton
                   type="text"
                   icon={
@@ -507,10 +577,90 @@ const AudiencePage = () => {
                     borderRadius: "5px",
                     padding: "0 10px",
                   }}
-                  onClick={handleDeleteSelected}
+                  onClick={handleAssignTaskClick}
                 >
                   Assign Tags
                 </AntButton>
+
+                {showOptions && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      marginTop: "243px",
+                      zIndex: "1",
+                      background: "white",
+                      padding: "10px",
+                      borderRadius: "5px",
+                      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                      width: "200px",
+                      gap: 12,
+                    }}
+                  >
+                    <div
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      <AntButton
+                        type="primary"
+                        style={{ width: '30%', color: '#555ACC', fontSize: '12px', fontWeight: '700', background: 'none', outline: 'none' }}
+                        onClick={handleAssignTags}
+                      >
+                        Save
+                      </AntButton>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Search for tag here"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      style={{
+                        padding: "5px",
+                        marginBottom: "10px",
+                        width: "100%",
+                        boxSizing: "border-box",
+                        border: "2px solid #F5F6F7",
+                        borderRadius: "5px",
+                        color: "#000000",
+                      }}
+                      className="custom-input"
+                    />
+
+                    <style>
+                      {`
+                        .custom-input::placeholder {
+                          color: #C8CDD6;
+                          font-size: 10px;
+                          font-weight: 700;
+                        }
+                        .custom-input:focus {
+                          outline: none;
+                          border: 2px solid #F5F6F7;
+                          color: #000;
+                        }
+                      `}
+                    </style>
+
+                    {filteredOptions.map((option) => (
+                      <label
+                        key={option.value}
+                        style={{ display: "block", marginBottom: "5px" }}
+                      >
+                        <Checkbox
+                          value={option.value}
+                          checked={selectedTag.includes(option.value)}
+                          onChange={(e) =>
+                            setSelectedTag((prevTags) =>
+                              e.target.checked
+                                ? [...prevTags, option.value]
+                                : prevTags.filter((tag) => tag !== option.value)
+                            )
+                          }
+                        >
+                          {option.label}
+                        </Checkbox>
+                      </label>
+                    ))}
+                  </div>
+                )}
                 <AntButton
                   type="text"
                   className="mr-2"
@@ -519,7 +669,7 @@ const AudiencePage = () => {
                     borderRadius: "5px",
                     padding: "0 10px",
                   }}
-                  onClick={handleDeleteSelected}
+                  onClick={handleAssignTaskClick}
                 >
                   Cancel
                 </AntButton>
@@ -553,7 +703,7 @@ const AudiencePage = () => {
           initialValues={{
             name: editTemplate?.name?.props?.children,
             prompt: editTemplate?.prompt?.props?.children,
-            tone: editTemplate?.tone?.props?.children,
+            tone: editTemplate?.toneValue,
           }}
         >
           <Form.Item
@@ -566,7 +716,9 @@ const AudiencePage = () => {
           <Form.Item
             label="Email Address"
             name="prompt"
-            rules={[{ required: true, message: "Please enter the Email Address" }]}
+            rules={[
+              { required: true, message: "Please enter the Email Address" },
+            ]}
           >
             <Input />
           </Form.Item>
@@ -592,10 +744,3 @@ const AudiencePage = () => {
 };
 
 export default AudiencePage;
-
-
-
-
-
-
-
