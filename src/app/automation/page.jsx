@@ -1,4 +1,9 @@
-"use client";
+
+
+
+
+
+"use client"
 import React, { useState } from "react";
 import {
   Table,
@@ -10,16 +15,13 @@ import {
   Row,
   Col,
   Form,
- 
+  Switch,
 } from "antd";
-import { Switch } from 'antd';
-
 import {
   DeleteOutlined,
   EditOutlined,
   EyeOutlined,
   SearchOutlined,
-  
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "@/components/app-components/Layout/MainLayout";
@@ -267,35 +269,90 @@ const AllAutomation = () => {
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [form] = Form.useForm();
   const [isEnabled, setIsEnabled] = useState(false);
-const handleToggle = (checked) => {
 
+  const handleToggle = (checked) => {
     setIsEnabled(checked);
   };
+
   const handleReset = () => {
     setFilteredData(dataSource);
   };
+
   const handleModalCancel = () => {
     setIsModalVisible(false);
     setEditTemplate(null);
     form.resetFields();
   };
+
   const handleSelectTemplate = (key) => {
     dispatch(toggleSelectTemplate(key));
   };
 
   const handleDelete = (key) => {
-    setFilteredData((prevData) => prevData.filter((item) => item.key !== key));
-    setDataSource((prevData) => prevData.filter((item) => item.key !== key));
+    Modal.confirm({
+      title: "Are You Sure?",
+      content: (
+        <div style={{color:'#6B7A99',fontSize:'14px'}}>
+          <p>Are you sure you want to proceed?</p>
+          <p>Deleting Specific Automations will also delete all associated data. </p>
+        </div>
+      ),
+      okText: "Delete",
+      okType: "danger",
+      cancelText: "Cancel",
+      okButtonProps: {
+        style: {
+          backgroundColor: "#1565C0",
+          color: "#fff",
+          border: "none",
+          borderRadius:'20px',
+        },
+      },
+      cancelButtonProps:{
+        style:{
+         background: '#F5F6F7',
+         border:'none',
+         borderRadius:'20px',
+         color: '#6B7A99',
+
+        },
+      },
+      onOk() {
+        setFilteredData((prevData) => prevData.filter((item) => item.key !== key));
+        setDataSource((prevData) => prevData.filter((item) => item.key !== key));
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
   };
+  
 
   const handleDeleteSelected = () => {
-    setFilteredData((prevData) =>
-      prevData.filter((item) => !selectedTemplates.includes(item.key))
-    );
-    setDataSource((prevData) =>
-      prevData.filter((item) => !selectedTemplates.includes(item.key))
-    );
-    dispatch(deleteSelectedTemplates());
+    Modal.confirm({
+      title: 'Are You Sure?',
+      content: (
+        <div>
+          <p>Deleting selected automations will also delete the entire automation journeys.</p>
+          <p>Are you sure you want to proceed?</p>
+        </div>
+      ),
+      okText: 'Delete', 
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk() {
+        setFilteredData((prevData) =>
+          prevData.filter((item) => !selectedTemplates.includes(item.key))
+        );
+        setDataSource((prevData) =>
+          prevData.filter((item) => !selectedTemplates.includes(item.key))
+        );
+        dispatch(deleteSelectedTemplates());
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
   };
 
   const handleEdit = (record) => {
@@ -334,13 +391,12 @@ const handleToggle = (checked) => {
             color: "#7D8FB3",
             fontSize: "12px",
             fontWeight: 700,
-       
           }}
         >
           {values.tone}
         </span>
       ),
-      enabled:true,
+      enabled: true,
     };
 
     if (isCreatingNew) {
@@ -371,8 +427,6 @@ const handleToggle = (checked) => {
     setEditTemplate(null);
     form.resetFields();
   };
-
-  
 
   const columns = [
     {
@@ -447,16 +501,15 @@ const handleToggle = (checked) => {
       ),
     },
   ];
+
   return (
     <MainLayout>
       <div className="firstContainer">
         <div className="p-0">
           <TemplateHeader
             title="Automation Journeys"
-            description="Create contact for your users to leverage GPT to  email systems to keep your data secure"
-               
+            description="Create contact for your users to leverage GPT to email systems to keep your data secure"
           ></TemplateHeader>
-
           <div className="flex flex-col md:flex-col lg:flex-row justify-between items-center mb-4 space-y-2 md:space-y-0 gap-[7px]">
             <Input
               placeholder="Search by automation name"
@@ -497,9 +550,7 @@ const handleToggle = (checked) => {
               <div className="flex items-center">
                 <AntButton
                   type="text"
-                  icon={
-                    <DeleteOutlined style={{ marginTop: "-6px !important" }} />
-                  }
+                  icon={<DeleteOutlined style={{ marginTop: "-6px !important" }} />}
                   className="mr-2"
                   style={{
                     color: "#ffffff",
@@ -578,7 +629,6 @@ const handleToggle = (checked) => {
           >
             <Input />
           </Form.Item>
-        
           <Form.Item style={{ display: "flex", justifyContent: "flex-end" }}>
             <AntButton
               style={{ background: "#1565C0", color: "#fff" }}
@@ -594,5 +644,6 @@ const handleToggle = (checked) => {
 };
 
 export default AllAutomation;
+
 
 

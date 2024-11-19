@@ -87,7 +87,7 @@ const initialData = [
           marginRight: "5px",
         }}
       >
-       BADGE
+        BADGE
       </span>,
     ],
     toneValue: ["BADGE"],
@@ -96,13 +96,13 @@ const initialData = [
     key: "3",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-       Lester Holland
+        Lester Holland
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-         i.e. I would like to generate a follow up regarding our last week
-         discussion of a property visit...
+        i.e. I would like to generate a follow up regarding our last week
+        discussion of a property visit...
       </span>
     ),
     tone: [
@@ -123,19 +123,18 @@ const initialData = [
       </span>,
     ],
     toneValue: ["BADGE"],
-
   },
   {
     key: "4",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-       Max Allison
+        Max Allison
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-         i.e. I would like to generate a follow up regarding our last week
-         discussion of a property visit...
+        i.e. I would like to generate a follow up regarding our last week
+        discussion of a property visit...
       </span>
     ),
     tone: [
@@ -161,13 +160,13 @@ const initialData = [
     key: "5",
     name: (
       <span style={{ color: "#686DE0", fontSize: "12px", fontWeight: 700 }}>
-       Richard Gregory
+        Richard Gregory
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-         i.e. I would like to generate a follow up regarding our last week
-         discussion of a property visit...
+        i.e. I would like to generate a follow up regarding our last week
+        discussion of a property visit...
       </span>
     ),
     tone: [
@@ -213,7 +212,6 @@ const AudiencePage = () => {
     { value: "VALUE5", label: "Value 5", tag: "Tag E" },
     { value: "VALUE6", label: "Value 6", tag: "Tag F" },
   ];
-
   const handleAssignTaskClick = () => {
     setShowOptions(!showOptions);
   };
@@ -540,10 +538,10 @@ const AudiencePage = () => {
                 color: "#ffffff",
                 borderRadius: "5px",
                 width: "100%",
-                height: "auto", 
+                height: "auto",
                 marginBottom: "12px",
                 border: "none",
-                flexWrap: "wrap", 
+                flexWrap: "wrap",
               }}
             >
               <span className="text-sm flex items-center">
@@ -597,15 +595,37 @@ const AudiencePage = () => {
                     }}
                   >
                     <div
-                      style={{ display: "flex", justifyContent: "flex-end" }}
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                      }}
                     >
-                      <AntButton
+                      <span style={{ marginRight: "10px", color: "#7D8FB3",fontSize:'12px' }}>
+                        <span style={{ marginLeft: "5px" }}>-</span>
+                        {selectedTag.length} tag
+                        {selectedTag.length > 1 ? "s" : ""} selected
+                        
+                       
+                
+                      </span>
+                      <button
                         type="primary"
-                        style={{ width: '30%', color: '#555ACC', fontSize: '12px', fontWeight: '700', background: 'none', outline: 'none' }}
+                        style={{
+                          width: "30%",
+                          color: "#555ACC",
+                          fontSize: "12px",
+                          fontWeight: "700",
+                          background: "none",
+                          outline: "none",
+                          display:'flex',
+                          justifyContent:'flex-end',
+                          marginLeft:'30px',
+                        }}
                         onClick={handleAssignTags}
                       >
                         Save
-                      </AntButton>
+                      </button>
                     </div>
                     <input
                       type="text"
@@ -744,3 +764,6 @@ const AudiencePage = () => {
 };
 
 export default AudiencePage;
+
+
+
