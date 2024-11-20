@@ -1,4 +1,6 @@
+
 "use client";
+
 import React, { useState } from "react";
 import {
   Table,
@@ -190,6 +192,20 @@ const initialData = [
   },
 ];
 
+const CustomCheckbox = ({ checked, onChange }) => (
+  <label className="custom-checkbox">
+    <input
+      type="checkbox"
+      checked={checked}
+      onChange={onChange}
+      className="custom-checkbox-input"
+    />
+    <span className="custom-checkbox-label">
+      {checked && <span className="custom-checkbox-minus">-</span>}
+    </span>
+  </label>
+);
+
 const AudiencePage = () => {
   const dispatch = useDispatch();
   const selectedTemplates =
@@ -212,6 +228,7 @@ const AudiencePage = () => {
     { value: "VALUE5", label: "Value 5", tag: "Tag E" },
     { value: "VALUE6", label: "Value 6", tag: "Tag F" },
   ];
+
   const handleAssignTaskClick = () => {
     setShowOptions(!showOptions);
   };
@@ -496,8 +513,8 @@ const AudiencePage = () => {
               </div>
 
               <Select
-                mode="multiple"
-                value={selectedTag}
+                // mode="multiple"
+                // value={selectedTag}
                 placeholder="Tags"
                 className="w-[100px] max-w-[220px] md:max-w-[200px] lg:max-w-[220px] text-sm"
                 style={{
@@ -592,22 +609,43 @@ const AudiencePage = () => {
                       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                       width: "200px",
                       gap: 12,
+                      border: "2px solid #F5F6F7",
                     }}
                   >
                     <div
                       style={{
                         display: "flex",
+
+                        borderRadius: "5px",
                         justifyContent: "flex-start",
                         alignItems: "center",
+                        width: "111%",
+                        marginTop: "-11px",
+                        marginLeft: "-10px",
+                        border: "2px solid rgb(245, 246, 247)",
                       }}
                     >
-                      <span style={{ marginRight: "10px", color: "#7D8FB3",fontSize:'12px' }}>
-                        <span style={{ marginLeft: "5px" }}>-</span>
+                      <CustomCheckbox
+                        checked={selectedTag.length > 0}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedTag(
+                              options.map((option) => option.value)
+                            );
+                          } else {
+                            setSelectedTag([]);
+                          }
+                        }}
+                      />
+                      <span
+                        style={{
+                          marginLeft: "21px",
+                          color: "#7D8FB3",
+                          fontSize: "12px",
+                        }}
+                      >
                         {selectedTag.length} tag
                         {selectedTag.length > 1 ? "s" : ""} selected
-                        
-                       
-                
                       </span>
                       <button
                         type="primary"
@@ -618,9 +656,8 @@ const AudiencePage = () => {
                           fontWeight: "700",
                           background: "none",
                           outline: "none",
-                          display:'flex',
-                          justifyContent:'flex-end',
-                          marginLeft:'30px',
+                          display: "flex",
+                          justifyContent: "flex-end",
                         }}
                         onClick={handleAssignTags}
                       >
@@ -656,29 +693,72 @@ const AudiencePage = () => {
                           border: 2px solid #F5F6F7;
                           color: #000;
                         }
+                        .custom-checkbox {
+                          display: inline-block;
+                          position: relative;
+                          cursor: pointer;
+                        }
+                        .custom-checkbox-input {
+                          position: absolute;
+                          opacity: 0;
+                          width: 0;
+                          height: 0;
+                        }
+                        .custom-checkbox-label {
+                          display: inline-block;
+                          width: 20px;
+                          height: 20px;
+                          background-color: #FFFFFF;
+                          border: 2px solid #F2F3F5;
+                          border-radius: 3px;
+                          margin-top: 8px;
+                           margin-left: 4px;
+                        }
+                        .custom-checkbox-input:checked + .custom-checkbox-label {
+                          {/* background-color: #1565C0; */}
+                          {/* border-color: #1565C0; */}
+                        }
+                        .custom-checkbox-input:checked + .custom-checkbox-label::after {
+                          content: "-";
+                          position: absolute;
+                          top: 45%;
+                          left: 57%;
+                          transform: translate(-50%, -50%);
+                          color:#3361FF;
+                          font-size: 26px;
+                          width:8px;
+                        }
                       `}
                     </style>
 
-                    {filteredOptions.map((option) => (
-                      <label
-                        key={option.value}
-                        style={{ display: "block", marginBottom: "5px" }}
-                      >
-                        <Checkbox
-                          value={option.value}
-                          checked={selectedTag.includes(option.value)}
-                          onChange={(e) =>
-                            setSelectedTag((prevTags) =>
-                              e.target.checked
-                                ? [...prevTags, option.value]
-                                : prevTags.filter((tag) => tag !== option.value)
-                            )
-                          }
-                        >
-                          {option.label}
-                        </Checkbox>
-                      </label>
-                    ))}
+                    {options
+  .filter((option) =>
+    option.label.toLowerCase().includes(searchQuery.toLowerCase())
+  ) 
+  .map((option) => (
+    <label
+      key={option.value}
+      style={{
+        display: "block",
+        marginBottom: "15px",
+    
+      }}
+    >
+      <Checkbox
+        value={option.value}
+        checked={selectedTag.includes(option.value)}
+        onChange={(e) =>
+          setSelectedTag((prevTags) =>
+            e.target.checked
+              ? [...prevTags, option.value]
+              : prevTags.filter((tag) => tag !== option.value)
+          )
+        }
+      />
+      <span style={{ color: "#7D8FB3", marginLeft: "8px" }}>{option.label}</span>
+    </label>
+  ))}
+
                   </div>
                 )}
                 <AntButton
@@ -764,6 +844,4 @@ const AudiencePage = () => {
 };
 
 export default AudiencePage;
-
-
 

@@ -136,7 +136,9 @@ body {
   .custom-sidebar-menu .ant-menu-item {
     margin-bottom: 10px;
   }
-
+.tagOption{
+  color:#7D8FB3 !important;
+}
   .layout-container {
     display: flex;
     flex-direction: column;
