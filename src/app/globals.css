@@ -144,7 +144,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
   }
-
+  
   .fixed-header {
     height: 60px;
     background-color: #1565c0;

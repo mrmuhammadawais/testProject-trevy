@@ -1,0 +1,10 @@
+.custom-modal .ant-modal-content {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .custom-modal .ant-modal-body {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  

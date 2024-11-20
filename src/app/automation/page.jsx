@@ -1,9 +1,4 @@
-
-
-
-
-
-"use client"
+"use client";
 import React, { useState } from "react";
 import {
   Table,
@@ -12,27 +7,24 @@ import {
   Space,
   Button as AntButton,
   Modal,
-  Row,
-  Col,
   Form,
   Switch,
+  
 } from "antd";
 import {
   DeleteOutlined,
   EditOutlined,
   EyeOutlined,
   SearchOutlined,
+  CloseOutlined,
+  MailOutlined,
+  ArrowsAltOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "@/components/app-components/Layout/MainLayout";
-import tagsImg from "../../assets/icons/tagsImg.png";
-import newtagImg from "../../assets/icons/newtagImg.png";
 import TemplateHeader from "@/components/functional-components/TemplateHeader";
-import {
-  toggleSelectTemplate,
-  deleteSelectedTemplates,
-} from "../../redux/taskSlice";
-
+import { toggleSelectTemplate, deleteSelectedTemplates } from "../../redux/taskSlice";
+import "../../../src/CustomModalStyles.css"
 const initialData = [
   {
     key: "1",
@@ -269,6 +261,7 @@ const AllAutomation = () => {
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [form] = Form.useForm();
   const [isEnabled, setIsEnabled] = useState(false);
+  const [viewedTemplate, setViewedTemplate] = useState(null);
 
   const handleToggle = (checked) => {
     setIsEnabled(checked);
@@ -292,9 +285,11 @@ const AllAutomation = () => {
     Modal.confirm({
       title: "Are You Sure?",
       content: (
-        <div style={{color:'#6B7A99',fontSize:'14px'}}>
-          <p>Are you sure you want to proceed?</p>
-          <p>Deleting Specific Automations will also delete all associated data. </p>
+        <div style={{ color: "#6B7A99", fontSize: "14px" }}>
+         
+          <p>
+            Deleting Specific Automations will also delete all associated data.{" "}
+          </p>
         </div>
       ),
       okText: "Delete",
@@ -305,41 +300,47 @@ const AllAutomation = () => {
           backgroundColor: "#1565C0",
           color: "#fff",
           border: "none",
-          borderRadius:'20px',
+          borderRadius: "20px",
         },
+        icon:'null',
       },
-      cancelButtonProps:{
-        style:{
-         background: '#F5F6F7',
-         border:'none',
-         borderRadius:'20px',
-         color: '#6B7A99',
-
+      cancelButtonProps: {
+        style: {
+          background: "#F5F6F7",
+          border: "none",
+          borderRadius: "20px",
+          color: "#6B7A99",
         },
       },
       onOk() {
-        setFilteredData((prevData) => prevData.filter((item) => item.key !== key));
-        setDataSource((prevData) => prevData.filter((item) => item.key !== key));
+        setFilteredData((prevData) =>
+          prevData.filter((item) => item.key !== key)
+        );
+        setDataSource((prevData) =>
+          prevData.filter((item) => item.key !== key)
+        );
       },
       onCancel() {
         console.log("Cancel");
       },
     });
   };
-  
 
   const handleDeleteSelected = () => {
     Modal.confirm({
-      title: 'Are You Sure?',
+       title: "Are You Sure?",
       content: (
         <div>
-          <p>Deleting selected automations will also delete the entire automation journeys.</p>
-          <p>Are you sure you want to proceed?</p>
+          <p>
+            Deleting selected automations will also delete the entire automation
+            journeys.
+          </p>
+          {/* <p>Are you sure?</p> */}
         </div>
       ),
-      okText: 'Delete', 
-      okType: 'danger',
-      cancelText: 'Cancel',
+      okText: "Delete",
+      // okType: "danger",
+      cancelText: "Cancel",
       onOk() {
         setFilteredData((prevData) =>
           prevData.filter((item) => !selectedTemplates.includes(item.key))
@@ -350,7 +351,7 @@ const AllAutomation = () => {
         dispatch(deleteSelectedTemplates());
       },
       onCancel() {
-        console.log('Cancel');
+        console.log("Cancel");
       },
     });
   };
@@ -428,6 +429,14 @@ const AllAutomation = () => {
     form.resetFields();
   };
 
+  const handleViewDetails = (record) => {
+    setViewedTemplate(record);
+  };
+
+  const closeModal = () => {
+    setViewedTemplate(null);
+  };
+
   const columns = [
     {
       title: (
@@ -460,7 +469,7 @@ const AllAutomation = () => {
     {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-         Time Runs
+          Time Runs
         </span>
       ),
       dataIndex: "prompt",
@@ -470,7 +479,7 @@ const AllAutomation = () => {
     {
       title: (
         <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-         Enable/Disable Toggle
+          Enable/Disable Toggle
         </span>
       ),
       dataIndex: "enabled",
@@ -496,154 +505,268 @@ const AllAutomation = () => {
             style={{ border: "none" }}
             onClick={() => handleDelete(record.key)}
           />
-          <EyeOutlined style={{ color: "#29CC3980" }} />
+          <EyeOutlined
+            style={{ color: "#29CC3980", cursor: "pointer" }}
+            onClick={() => handleViewDetails(record)}
+          />
         </Space>
       ),
     },
   ];
 
   return (
-    <MainLayout>
-      <div className="firstContainer">
-        <div className="p-0">
-          <TemplateHeader
-            title="Automation Journeys"
-            description="Create contact for your users to leverage GPT to email systems to keep your data secure"
-          ></TemplateHeader>
-          <div className="flex flex-col md:flex-col lg:flex-row justify-between items-center mb-4 space-y-2 md:space-y-0 gap-[7px]">
-            <Input
-              placeholder="Search by automation name"
-              suffix={<SearchOutlined style={{ color: "#BFBFBF" }} />}
-              className="w-full max-w-[220px] md:max-w-[200px] lg:max-w-[220px] text-sm"
-              style={{
-                border: "2px solid #F5F6F7",
-                borderRadius: "5px",
-                height: "40px",
-              }}
-            />
-
-            <button
-              className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[200px] md:w-auto lg:w-auto text-sm mt-2 md:mt-0 lg:mt-0"
-              onClick={handleCreateNewTemplate}
-            >
-              + Create New Automation
-            </button>
-          </div>
-
-          {selectedTemplates.length > 0 && (
-            <div
-              className="flex items-center justify-between p-2"
-              style={{
-                backgroundColor: "#1565C0",
-                color: "#ffffff",
-                borderRadius: "5px",
-                width: "100%",
-                height: "40px",
-                marginBottom: "12px",
-                border: "none",
-              }}
-            >
-              <span className="text-sm">
-                {selectedTemplates.length} item
-                {selectedTemplates.length > 1 ? "s" : ""} selected
-              </span>
-              <div className="flex items-center">
-                <AntButton
-                  type="text"
-                  icon={<DeleteOutlined style={{ marginTop: "-6px !important" }} />}
-                  className="mr-2"
-                  style={{
-                    color: "#ffffff",
-                    borderRadius: "5px",
-                    padding: "0 10px",
-                  }}
-                  onClick={handleDeleteSelected}
-                >
-                  Delete
-                </AntButton>
-
-                <AntButton
-                  type="text"
-                  className="mr-2"
-                  style={{
-                    color: "#ffffff",
-                    borderRadius: "5px",
-                    padding: "0 10px",
-                  }}
-                  onClick={handleModalCancel}
-                >
-                  Cancel
-                </AntButton>
-              </div>
+    
+      <MainLayout>
+        <div className="firstContainer">
+          <div className="p-0">
+            <TemplateHeader
+              title="Automation Journeys"
+              description="Create contact for your users to leverage GPT to email systems to keep your data secure"
+            ></TemplateHeader>
+            <div className="flex flex-col md:flex-col lg:flex-row justify-between items-center mb-4 space-y-2 md:space-y-0 gap-[7px]">
+              <Input
+                placeholder="Search by automation name"
+                suffix={<SearchOutlined style={{ color: "#BFBFBF" }} />}
+                className="w-full max-w-[220px] md:max-w-[200px] lg:max-w-[220px] text-sm"
+                style={{
+                  border: "2px solid #F5F6F7",
+                  borderRadius: "5px",
+                  height: "40px",
+                }}
+              />
+  
+              <button
+                className="bg-[#1565C0] text-white py-2 px-4 rounded-full w-full max-w-[200px] md:w-auto lg:w-auto text-sm mt-2 md:mt-0 lg:mt-0"
+                onClick={handleCreateNewTemplate}
+              >
+                + Create New Automation
+              </button>
             </div>
-          )}
-          <div className="responsive-width bg-white shadow-md rounded-md lg:px-4">
-            <Table
-              dataSource={filteredData}
-              columns={columns}
-              pagination={false}
-              className="responsive-width"
-              scroll={{ x: "100%" }}
-              rowClassName={(record) =>
-                selectedTemplates.includes(record.key) ? "selected-row" : ""
-              }
-            />
+  
+            {selectedTemplates.length > 0 && (
+              <div
+                className="flex items-center justify-between p-2"
+                style={{
+                  backgroundColor: "#1565C0",
+                  color: "#ffffff",
+                  borderRadius: "5px",
+                  width: "100%",
+                  height: "40px",
+                  marginBottom: "12px",
+                  border: "none",
+                }}
+              >
+                <span className="text-sm">
+                  {selectedTemplates.length} item
+                  {selectedTemplates.length > 1 ? "s" : ""} selected
+                </span>
+                <div className="flex items-center">
+                  <AntButton
+                    type="text"
+                    icon={<DeleteOutlined style={{ marginTop: "-6px !important" }} />}
+                    className="mr-2"
+                    style={{
+                      color: "#ffffff",
+                      borderRadius: "5px",
+                      padding: "0 10px",
+                    }}
+                    onClick={handleDeleteSelected}
+                  >
+                    Delete
+                  </AntButton>
+  
+                  <AntButton
+                    type="text"
+                    className="mr-2"
+                    style={{
+                      color: "#ffffff",
+                      borderRadius: "5px",
+                      padding: "0 10px",
+                    }}
+                    onClick={handleModalCancel}
+                  >
+                    Cancel
+                  </AntButton>
+                </div>
+              </div>
+            )}
+            <div className="responsive-width bg-white shadow-md rounded-md lg:px-4">
+              <Table
+                dataSource={filteredData}
+                columns={columns}
+                pagination={false}
+                className="responsive-width"
+                scroll={{ x: "100%" }}
+                rowClassName={(record) =>
+                  selectedTemplates.includes(record.key) ? "selected-row" : ""
+                }
+              />
+            </div>
           </div>
         </div>
-      </div>
-
-      <Modal
-        title={isCreatingNew ? "Create New Template" : "Edit Template"}
-        visible={isModalVisible}
-        onCancel={handleModalCancel}
-        footer={null}
-      >
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={handleModalOk}
-          initialValues={{
-            name: editTemplate?.name?.props?.children,
-            prompt: editTemplate?.prompt?.props?.children,
-            tone: editTemplate?.tone?.props?.children,
-          }}
+  
+        <Modal
+          title={isCreatingNew ? "Create New Template" : "Edit Template"}
+          visible={isModalVisible}
+          onCancel={handleModalCancel}
+          footer={null}
         >
-          <Form.Item
-            label="Automation"
-            name="name"
-            rules={[{ required: true, message: "Please enter the Automation" }]}
+          <Form
+            form={form}
+            layout="vertical"
+            onFinish={handleModalOk}
+            initialValues={{
+              name: editTemplate?.name?.props?.children,
+              prompt: editTemplate?.prompt?.props?.children,
+              tone: editTemplate?.tone?.props?.children,
+            }}
           >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Created Date"
-            name="prompt"
-            rules={[{ required: true, message: "Please enter the Created Date" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Time Runs"
-            name="tone"
-            rules={[{ required: true, message: "Please enter the Time Runs" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item style={{ display: "flex", justifyContent: "flex-end" }}>
-            <AntButton
-              style={{ background: "#1565C0", color: "#fff" }}
-              htmlType="submit"
+            <Form.Item
+              label="Automation"
+              name="name"
+              rules={[{ required: true, message: "Please enter the Automation" }]}
             >
-              {isCreatingNew ? "Create" : "Save"}
-            </AntButton>
-          </Form.Item>
-        </Form>
-      </Modal>
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Created Date"
+              name="prompt"
+              rules={[{ required: true, message: "Please enter the Created Date" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Time Runs"
+              name="tone"
+              rules={[{ required: true, message: "Please enter the Time Runs" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item style={{ display: "flex", justifyContent: "flex-end" }}>
+              <AntButton
+                style={{ background: "#1565C0", color: "#fff" }}
+                htmlType="submit"
+              >
+                {isCreatingNew ? "Create" : "Save"}
+              </AntButton>
+            </Form.Item>
+          </Form>
+        </Modal>
+     
+{viewedTemplate && (
+  <Modal
+    visible={!!viewedTemplate}
+    onCancel={closeModal}
+    footer={null}
+    width="60%"
+    bodyStyle={{ padding: 0, margin: 0 }}
+   
+    className="custom-modal" 
+  >
+    <div
+      style={{
+        backgroundColor: "#1565C0",
+        padding: "16px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <span style={{ fontSize: "16px", fontWeight: 600, color: '#FFFFFF' }}>
+        <MailOutlined style={{ marginRight: "6px", transform: "rotate(82deg)" }} />
+        Marketing our product to customer
+      </span>
+
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+       
+        <AntButton
+          type="text"
+          icon={<ArrowsAltOutlined />}
+          style={{
+            color: "#363DD8",
+            backgroundColor: "#fff",
+            borderRadius: "50%",
+            width: "30px",
+            height: "30px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 0,
+            marginRight: "10px",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", 
+          }}
+        />
+         <AntButton
+          type="text"
+          icon={<CloseOutlined />}
+          style={{
+            color: "#363DD8",
+            backgroundColor: "#fff",
+            borderRadius: "50%",
+            width: "30px",
+            height: "30px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 0,
+         
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", 
+          }}
+          onClick={closeModal}
+        />
+      </div>
+    </div>
+    <div
+      style={{
+        backgroundColor: "#fff",
+        border: '1px solid #EBEBEB',
+        position: 'relative',
+      }}
+    >
+      <div style={{
+        borderBottom: "1px solid #ccc",
+        width: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: -1,
+      }} />
+      <div style={{
+        padding: "16px",
+        position: 'relative',
+        zIndex: 1,
+      }}>
+        <div style={{ marginBottom: "16px", padding: "8px 0", color: '#4D5E80', borderBottom: "1px solid #EBEBEB",fontWeight:'500' }}>
+          To: Lee Jordan
+        </div>
+        <div style={{ marginBottom: "16px", padding: "8px 0", color: '#4D5E80', borderBottom: "1px solid #EBEBEB",fontWeight:'500' }}>
+        Marketing our products to Customer
+        </div>
+        <div style={{ color: "#65728C", fontSize: '14px', fontWeight: '500' }}>
+          <p>Dear [Gorge],</p>
+          <br/>
+          <p>
+            I hope this email finds you well. We wanted to express our sincere gratitude for choosing to visit our property recently. We value your patronage and trust that your experience was enjoyable.
+          </p>
+          <br/>
+          <p>
+            We would love to hear more about your visit and any feedback you might have. Your insights are essential to us in enhancing our services and ensuring that every guest has a memorable experience.
+          </p>
+          <br/>
+          <p>
+            Thank you once again for choosing us, and we look forward to welcoming you back soon.
+          </p>
+          <p>
+            Best Regards, <br />
+            [Your Name]
+          </p>
+        </div>
+      </div>
+    </div>
+  </Modal>
+)}
     </MainLayout>
   );
 };
 
 export default AllAutomation;
-
-
-
