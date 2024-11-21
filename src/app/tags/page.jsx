@@ -192,7 +192,9 @@ const Tags = () => {
   const handleSelectTemplate = (key) => {
     dispatch(toggleSelectTemplate(key));
   };
-
+  const handleDeselectTemplate = (key) => {
+    dispatch(toggleSelectTemplate(key));
+  };
   const handleDelete = (key) => {
     setFilteredData((prevData) => prevData.filter((item) => item.key !== key));
     setDataSource((prevData) => prevData.filter((item) => item.key !== key));
@@ -353,6 +355,12 @@ const Tags = () => {
       ),
     },
   ];
+  const handleCancelSelected = () => {
+    console.log("handleCancelSelected called");
+    selectedTemplates.forEach((key) => {
+      handleDeselectTemplate(key);
+    });
+  };
   return (
     <MainLayout>
       <div className="firstContainer">
@@ -425,7 +433,7 @@ const Tags = () => {
                     borderRadius: "5px",
                     padding: "0 10px",
                   }}
-                  onClick={handleDeleteSelected}
+                  onClick={handleCancelSelected}
                 >
                   Cancel
                 </AntButton>
@@ -529,3 +537,33 @@ const Tags = () => {
 };
 
 export default Tags;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

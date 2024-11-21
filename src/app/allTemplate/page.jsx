@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import {
   Table,
@@ -10,15 +10,10 @@ import {
   Form,
 } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "@/components/app-components/Layout/MainLayout";
-import People from "../../assets/icons/people.png";
 import TemplateHeader from "@/components/functional-components/TemplateHeader";
-import {
-  toggleSelectTemplate,
-  deleteSelectedTemplates,
-} from "../../redux/taskSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSelectTemplate, deleteSelectedTemplates } from "../../redux/taskSlice";
 
 const initialData = [
   {
@@ -28,7 +23,6 @@ const initialData = [
         Zachary Gomez
       </span>
     ),
-
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
         i.e. I would like to generate a follow up regarding our last week
@@ -118,6 +112,7 @@ const initialData = [
     ),
   },
 ];
+
 const TemplatePage = () => {
   const dispatch = useDispatch();
   const selectedTemplates =
@@ -129,6 +124,10 @@ const TemplatePage = () => {
   const [form] = Form.useForm();
 
   const handleSelectTemplate = (key) => {
+    dispatch(toggleSelectTemplate(key));
+  };
+
+  const handleDeselectTemplate = (key) => {
     dispatch(toggleSelectTemplate(key));
   };
 
@@ -200,6 +199,7 @@ const TemplatePage = () => {
   };
 
   const handleModalCancel = () => {
+    console.log("handleModalCancel called");
     setIsModalVisible(false);
     setEditTemplate(null);
     form.resetFields();
@@ -273,13 +273,18 @@ const TemplatePage = () => {
     },
   ];
 
+  const handleCancelSelected = () => {
+    console.log("handleCancelSelected called");
+    selectedTemplates.forEach((key) => {
+      handleDeselectTemplate(key);
+    });
+  };
+
   return (
     <MainLayout>
       <div className="firstContainer">
         <div className="p-0">
-        <TemplateHeader title="All Templates" description="Create contact for your users to leverage GPT to  email systems to keep your data secure" />
-
-        
+          <TemplateHeader title="All Templates" description="Create contact for your users to leverage GPT to email systems to keep your data secure" />
           <div className="flex flex-col sm:flex-row justify-between items-center mb-4 space-y-2 sm:space-y-0">
             <Input.Search
               placeholder="Search by template name"
@@ -317,9 +322,7 @@ const TemplatePage = () => {
               <div className="flex items-center">
                 <AntButton
                   type="text"
-                  icon={
-                    <DeleteOutlined style={{ marginTop: "-6px !important" }} />
-                  }
+                  icon={<DeleteOutlined style={{ marginTop: "-6px !important" }} />}
                   className="mr-2"
                   style={{
                     color: "#ffffff",
@@ -338,7 +341,7 @@ const TemplatePage = () => {
                     borderRadius: "5px",
                     padding: "0 10px",
                   }}
-                  onClick={handleDeleteSelected}
+                  onClick={handleCancelSelected}
                 >
                   Cancel
                 </AntButton>
@@ -369,11 +372,6 @@ const TemplatePage = () => {
           form={form}
           layout="vertical"
           onFinish={handleModalOk}
-          initialValues={{
-            name: editTemplate?.name?.props?.children,
-            prompt: editTemplate?.prompt?.props?.children,
-            tone: editTemplate?.tone?.props?.children,
-          }}
         >
           <Form.Item
             label="Template Title"
@@ -397,9 +395,14 @@ const TemplatePage = () => {
             <Input />
           </Form.Item>
           <Form.Item>
-            <AntButton style={{background: '#1565C0',color:'#fff'}}htmlType="submit">
-              {isCreatingNew ? "Create" : "Save"}
-            </AntButton>
+            <Space>
+              <AntButton style={{ background: '#1565C0', color: '#fff' }} htmlType="submit">
+                {isCreatingNew ? "Create" : "Save"}
+              </AntButton>
+              <AntButton onClick={handleModalCancel}>
+                Cancel
+              </AntButton>
+            </Space>
           </Form.Item>
         </Form>
       </Modal>

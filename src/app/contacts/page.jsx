@@ -241,7 +241,9 @@ const AudiencePage = () => {
   const handleSelectTemplate = (key) => {
     dispatch(toggleSelectTemplate(key));
   };
-
+  const handleDeselectTemplate = (key) => {
+    dispatch(toggleSelectTemplate(key));
+  };
   const handleDeleteSelected = () => {
     setFilteredData((prevData) =>
       prevData.filter((item) => !selectedTemplates.includes(item.key))
@@ -485,7 +487,13 @@ const AudiencePage = () => {
   const filteredOptions = options.filter((option) =>
     option.label.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
+  const handleCancelSelected = () => {
+    console.log("handleCancelSelected called");
+    selectedTemplates.forEach((key) => {
+      handleDeselectTemplate(key);
+    });
+  
+  };
   return (
     <MainLayout>
       <div className="firstContainer">
@@ -769,7 +777,7 @@ const AudiencePage = () => {
                     borderRadius: "5px",
                     padding: "0 10px",
                   }}
-                  onClick={handleAssignTaskClick}
+                  onClick={handleCancelSelected}
                 >
                   Cancel
                 </AntButton>
