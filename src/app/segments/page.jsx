@@ -30,7 +30,6 @@ import {
 import MainLayout from "@/components/app-components/Layout/MainLayout";
 import React from "react";
 import { useState } from "react";
-// import ReactQuill from "react-quill";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 const { Title, Text } = Typography;
@@ -129,7 +128,7 @@ const activityData = [
 ];
 const handleDelete = (key) => {
   const updatedData = filteredData.filter((item) => item.key !== key);
-  setFilteredData(updatedData); // Assuming you're using useState for filteredData
+  setFilteredData(updatedData); 
 };
 export default function Segments() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -138,10 +137,7 @@ export default function Segments() {
   const [from, setFrom] = useState("");
   const [subject, setSubject] = useState("");
 
-  // const handleSendEmail = () => {
-  //   console.log("Sending email with content:", emailContent);
-  //   setIsModalVisible(false);
-  // };
+
 
   const handleOpenModal = () => {
     setIsModalVisible(true);
@@ -151,15 +147,12 @@ export default function Segments() {
     setIsModalVisible(false);
   };
   const handleSendEmail = () => {
-    // Add your email sending logic here (e.g., API call)
 
-    // Reset the form fields after sending the email
     setTo("");
     setFrom("");
     setSubject("");
     setEmailContent("");
 
-    // Close the modal after sending the email
     handleCloseModal();
   };
 
@@ -574,7 +567,6 @@ export default function Segments() {
                     ...item,
                     key: index,
                   }))}
-                  //  dataSource={filteredData}
 
                   pagination={false}
                   bordered={false}

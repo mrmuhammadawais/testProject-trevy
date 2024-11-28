@@ -151,13 +151,13 @@ body {
     flex-shrink: 0;
   }
   .compact-row {
-    height: 32px; /* Adjust row height for compact spacing */
+    height: 32px; 
   }
   .text{
     font-size: '12px !important';
   }
   .card1 .ant-table-cell {
-    padding: 4px 8px; /* Further reduce cell padding */
+    padding: 4px 8px; 
   }
   .content {
     flex-grow: 1;
@@ -170,25 +170,24 @@ body {
   .ant-menu {
     background: #fff !important;
   }
-  /* @media (max-width: 425px) and (min-width: 425px) {
-    .card1 {
-      margin-right: 0px;
-      width: 377px;
-      margin-right: 0px !important;
-     padding: 0px !important;    
-      overflow-x: auto !important;
-    
-    
-      
-    }
-
-  } */
+ 
 @media (min-width: 768px) and (max-width: 768px) {
   .card1 {
     width: 500px !important;
     margin-right: -9px !important;
   }
 }
+@media (min-width: 320px) and (max-width: 1024px) {
+  .cardMargin {
+    margin-top: 136px !important;
+  }
+}
+@media (min-width: 1440px) and (max-width: 1440px) {
+  .cardMargin {
+    margin-top: 133px !important;
+  }
+}
+
 
 @media (max-width: 1024px)  {
   .mab {

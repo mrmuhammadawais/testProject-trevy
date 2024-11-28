@@ -30,7 +30,7 @@ const initialData = [
     key: "1",
     name: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        23-12-24
+       Automation 1
       </span>
     ),
     prompt: (
@@ -46,7 +46,7 @@ const initialData = [
           fontWeight: 700,
         }}
       >
-        Test Automation 1
+       23-12-24
       </span>
     ),
     enabled: (
@@ -62,17 +62,16 @@ const initialData = [
     ),
   
   },
-  
   {
     key: "2",
     name: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-      23-12-24
+       Automation 2
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        3
+        2
       </span>
     ),
     tone: (
@@ -81,11 +80,9 @@ const initialData = [
           color: "#7D8FB3",
           fontSize: "12px",
           fontWeight: 700,
-        
         }}
       >
-              Test Automation 2
-
+       23-12-24
       </span>
     ),
     enabled: (
@@ -99,17 +96,18 @@ const initialData = [
        <Switch/>
       </span>
     ),
+  
   },
   {
     key: "3",
     name: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-      23-12-24
+       Automation 3
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        4
+        2
       </span>
     ),
     tone: (
@@ -118,11 +116,9 @@ const initialData = [
           color: "#7D8FB3",
           fontSize: "12px",
           fontWeight: 700,
-       
         }}
       >
-              Test Automation 3
-
+       23-12-24
       </span>
     ),
     enabled: (
@@ -136,17 +132,18 @@ const initialData = [
        <Switch/>
       </span>
     ),
+  
   },
   {
     key: "4",
     name: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-       23-12-24
+       Automation 4
       </span>
     ),
     prompt: (
       <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        4
+        2
       </span>
     ),
     tone: (
@@ -155,85 +152,9 @@ const initialData = [
           color: "#7D8FB3",
           fontSize: "12px",
           fontWeight: 700,
-        
         }}
       >
-              Test Automation 4
-
-      </span>
-    ),
-    enabled: (
-      <span
-        style={{
-          color: "#7D8FB3",
-          fontSize: "12px",
-          fontWeight: 700,
-        }}
-      >
-       <Switch/>
-      </span>
-    ),
-  },
-  {
-    key: "5",
-    name: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
        23-12-24
-      </span>
-    ),
-    prompt: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        4
-      </span>
-    ),
-    tone: (
-      <span
-        style={{
-          color: "#7D8FB3",
-          fontSize: "12px",
-          fontWeight: 700,
-         
-        }}
-      >
-              Test Automation 5
-
-      </span>
-    ),
-    enabled: (
-      <span
-        style={{
-          color: "#7D8FB3",
-          fontSize: "12px",
-          fontWeight: 700,
-        }}
-      >
-       <Switch/>
-      </span>
-    ),
-  },
-  {
-    key: "6",
-    name: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-       23-12-24
-      </span>
-    ),
-    prompt: (
-      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
-        4
-      </span>
-    ),
-    tone: (
-      <span
-        style={{
-          color: "#7D8FB3",
-          fontSize: "12px",
-          fontWeight: 700,
-         
-        }}
-      >
-              Test Automation 6
-
       </span>
     ),
     enabled: (
@@ -247,7 +168,82 @@ const initialData = [
        <Switch/>
       </span>
     ),
+  
   },
+  {
+    key: "5",
+    name: (
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+       Automation 5
+      </span>
+    ),
+    prompt: (
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+        2
+      </span>
+    ),
+    tone: (
+      <span
+        style={{
+          color: "#7D8FB3",
+          fontSize: "12px",
+          fontWeight: 700,
+        }}
+      >
+       23-12-24
+      </span>
+    ),
+    enabled: (
+      <span
+        style={{
+          color: "#7D8FB3", 
+          fontSize: "12px",
+          fontWeight: 700,
+        }}
+      >
+       <Switch/>
+      </span>
+    ),
+  
+  },
+  {
+    key: "6",
+    name: (
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+       Automation 6
+      </span>
+    ),
+    prompt: (
+      <span style={{ color: "#7D8FB3", fontSize: "12px", fontWeight: 700 }}>
+        2
+      </span>
+    ),
+    tone: (
+      <span
+        style={{
+          color: "#7D8FB3",
+          fontSize: "12px",
+          fontWeight: 700,
+        }}
+      >
+       23-12-24
+      </span>
+    ),
+    enabled: (
+      <span
+        style={{
+          color: "#7D8FB3", 
+          fontSize: "12px",
+          fontWeight: 700,
+        }}
+      >
+       <Switch/>
+      </span>
+    ),
+  
+  },
+  
+ 
 ];
 
 const AllAutomation = () => {
@@ -330,10 +326,9 @@ const AllAutomation = () => {
     Modal.confirm({
       title: "Are You Sure?",
       content: (
-        <div>
+        <div style={{marginTop:'23px'}}>
           <p>
-            Deleting selected automations will also delete the entire automation
-            journeys.
+            Deleting selected automations will also delete all associated data
           </p>
         </div>
       ),
@@ -394,14 +389,26 @@ const AllAutomation = () => {
             color: "#7D8FB3",
             fontSize: "12px",
             fontWeight: 700,
+           
           }}
         >
           {values.tone}
         </span>
       ),
-      enabled: true,
+      enabled: (
+        <span
+          style={{
+            color: "#7D8FB3",
+            fontSize: "12px",
+            fontWeight: 700,
+           
+          }}
+        >
+          <Switch/>
+        </span>
+      ),
+    
     };
-
     if (isCreatingNew) {
       const newTemplate = {
         key: `${dataSource.length + 1}`,
@@ -412,16 +419,12 @@ const AllAutomation = () => {
     } else {
       setDataSource((prevData) =>
         prevData.map((item) =>
-          item.key === editTemplate.key
-            ? { ...item, tone: styledValues.tone }
-            : item
+          item.key === editTemplate.key ? { ...item, ...styledValues } : item
         )
       );
       setFilteredData((prevData) =>
         prevData.map((item) =>
-          item.key === editTemplate.key
-            ? { ...item, tone: styledValues.tone }
-            : item
+          item.key === editTemplate.key ? { ...item, ...styledValues } : item
         )
       );
     }
@@ -447,8 +450,8 @@ const AllAutomation = () => {
           Automation Name
         </span>
       ),
-      dataIndex: "tone",
-      key: "tone",
+      dataIndex: "name",
+      key: "name",
       width: 400,
       render: (text, record) => (
         <Checkbox
@@ -465,8 +468,8 @@ const AllAutomation = () => {
           Created Date
         </span>
       ),
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "prompt",
+      key: "prompt",
       width: 500,
     },
     {
@@ -475,8 +478,8 @@ const AllAutomation = () => {
           Time Runs
         </span>
       ),
-      dataIndex: "prompt",
-      key: "prompt",
+      dataIndex: "tone",
+      key: "tone",
       width: 500,
     },
     {
@@ -530,6 +533,9 @@ const AllAutomation = () => {
           <TemplateHeader
             title="Automation Journeys"
             description="Create contact for your users to leverage GPT to email systems to keep your data secure"
+          showImage={false}
+          marginTop={30}
+
           />
           <div className="flex flex-col md:flex-col lg:flex-row justify-between items-center mb-4 space-y-2 md:space-y-0 gap-[7px]">
             <Input
@@ -622,7 +628,9 @@ const AllAutomation = () => {
           initialValues={{
             name: editTemplate?.name?.props?.children,
             prompt: editTemplate?.prompt?.props?.children,
-            tone: editTemplate?.tone?.props?.children,
+            tone: editTemplate?.toneValue,
+            enabled: editTemplate?.enabled,
+            
           }}
         >
           <Form.Item
@@ -642,6 +650,13 @@ const AllAutomation = () => {
           <Form.Item
             label="Time Runs"
             name="tone"
+            rules={[{ required: true, message: "Please enter the Time Runs" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="enabled"
+            name="enabled"
             rules={[{ required: true, message: "Please enter the Time Runs" }]}
           >
             <Input />
@@ -787,27 +802,3 @@ const AllAutomation = () => {
 };
 
 export default AllAutomation;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

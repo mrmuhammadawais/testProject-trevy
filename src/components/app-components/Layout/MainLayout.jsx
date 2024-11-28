@@ -11,6 +11,7 @@ import {
   UsergroupAddOutlined,
   SyncOutlined,
   ApiOutlined,
+  ReconciliationOutlined,
 } from "@ant-design/icons";
 import Logo from "../../../assets/icons/logo.png";
 import Link from "next/link";
@@ -123,18 +124,19 @@ const SidebarContent = ({ isSidebarVisible, toggleSidebar }) => {
        
       ],
     },
+   
     {
       key: "integration",
       icon: <ApiOutlined/>,
       label: "Integration",
-      // children: [
-      //   {
-      //     key: "All Automation",
-      //     label: <Link href="/integration">Integration</Link>,
-      //   },
+      children: [
+        {
+          key: "All Automation",
+          label: <Link href="/integration">Integration</Link>,
+        },
    
        
-      // ],
+      ],
     },
   ];
 
